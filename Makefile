@@ -13,6 +13,7 @@ vim_session:
 
 Makefile:
 
+Ignore += Downloads
 Downloads.get Downloads.put: cloudFolder=dropbox:Download_files/2407
 Downloads: dir=~/
 Downloads: 
