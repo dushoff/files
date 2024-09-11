@@ -11,13 +11,14 @@ vim_session:
 
 ######################################################################
 
-Makefile: | Downloads
+Makefile:
 
 Downloads.get Downloads.put: cloudFolder=dropbox:Download_files/2407
 Downloads: dir=~/
 Downloads: 
 	$(linkdir)
 
+up.time: $(wildcard Downloads/*)
 pushup: Downloads.put
 pullup: Downloads.get
 
