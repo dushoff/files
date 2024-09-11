@@ -18,7 +18,7 @@ Downloads: dir=~/
 Downloads: 
 	$(linkdir)
 
-up.time: $(wildcard Downloads/*)
+up.time: Downloads
 pushup: Downloads.put
 pullup: Downloads.get
 
