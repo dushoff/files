@@ -18,6 +18,9 @@ Downloads: dir=~/
 Downloads: 
 	$(linkdir)
 
+pushup: Downloads.put
+pullup: Downloads.get
+
 ######################################################################
 
 ### Makestuff
