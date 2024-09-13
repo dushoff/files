@@ -20,8 +20,8 @@ Downloads:
 	$(linkdir)
 
 up.time: $(wildcard Downloads/*)
-pushup: Downloads.put
-pullup: Downloads.get
+## jpushup: Downloads.put
+## jpullup: Downloads.get
 
 ######################################################################
 
