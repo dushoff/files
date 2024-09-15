@@ -20,8 +20,8 @@ dfiles:
 	$(linkdirname)
 
 up.time: $(wildcard dfiles/*)
-pushup: dfiles.put
-pullup: dfiles.cloud
+pushup: dfiles.get
+pullup: dfiles.put
 up.time: $(wildcard Downloads/*)
 
 ######################################################################
