@@ -13,15 +13,15 @@ vim_session:
 
 Makefile:
 
-Ignore += Downloads
-Downloads.get Downloads.put: cloudFolder=dropbox:Download_files/2407
-Downloads: dir=~/
-Downloads: 
-	$(linkdir)
+Ignore += dfiles
+dfiles.get dfiles.put: cloudFolder=dropbox:Download_files/2407
+dfiles: dir=~/Downloads
+dfiles: 
+	$(linkdirname)
 
-up.time: $(wildcard Downloads/*)
-pushup: Downloads.put
-pullup: Downloads.get
+up.time: $(wildcard dfiles/*)
+pushup: dfiles.put
+pullup: dfiles.get
 
 ######################################################################
 
