@@ -14,7 +14,7 @@ vim_session:
 Makefile:
 
 Ignore += dfiles
-dfiles.get dfiles.put: cloudFolder=macdrive_root:cloud/2407
+dfiles.get dfiles.put: cloudFolder=macdrive_root:cloud/Downloads2409
 dfiles: dir=~/Downloads
 dfiles: 
 	$(linkdirname)
