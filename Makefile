@@ -22,6 +22,7 @@ dfiles:
 up.time: $(wildcard dfiles/*)
 pushup: dfiles.put
 pullup: dfiles.get
+up.time: $(wildcard Downloads/*)
 
 ######################################################################
 
