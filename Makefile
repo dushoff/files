@@ -21,7 +21,7 @@ dfiles:
 
 up.time: $(wildcard dfiles/*)
 pushup: dfiles.put
-pullup: dfiles.get
+pullup: dfiles.cloud
 up.time: $(wildcard Downloads/*)
 
 ######################################################################
