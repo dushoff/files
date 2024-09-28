@@ -11,8 +11,24 @@ vim_session:
 
 ######################################################################
 
+Makefile: | Downloads
+Downloads: dir=~
+Downloads:
+	$(linkdir)
+
+######################################################################
+
 Ignore += *.pdf
-Stelmach_form.signed.pdf: Stelmach_form.print.pdf formDrop/jsig.30.pdf Makefile
+
+######################################################################
+
+fpca2013jd.signed.pdf: Downloads/fpca2013jd.print.pdf formDrop/jsig.30.pdf Makefile
+	pdfjam $< 1 -o /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "420 330" \
+		-stdin -stdout | \
+	cat > $@
+
+Stelmach_form.signed.pdf: Stelmach_form.print.pdf formDrop/jsig.30.pdf
 	pdfjam $< 2 -o /dev/stdout | \
 	cpdf -stamp-on $(word 2, $^) -pos-left "420 330" \
 		-stdin -stdout | \
