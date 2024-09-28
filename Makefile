@@ -11,20 +11,11 @@ vim_session:
 
 ######################################################################
 
-Makefile:
-
-Ignore += dfiles
-dfiles.get dfiles.put: cloudFolder=macdrive_root:cloud/Downloads2409/
-dfiles: dir=~/Downloads
-dfiles: 
-	$(linkdirname)
-
-up.time: $(wildcard dfiles/*)
-pushup: dfiles.get
-pullup: dfiles.put
-up.time: $(wildcard Downloads/*)
-
-######################################################################
+## Downloads.puttime:
+Ignore += Downloads
+Downloads: dir=~
+Downloads: 
+	$(linkdir)
 
 ### Makestuff
 
