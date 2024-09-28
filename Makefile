@@ -23,9 +23,17 @@ Ignore += *.pdf
 
 ######################################################################
 
-fpca2013jd.signed.pdf: Downloads/fpca2013jd.print.pdf formDrop/jsig.30.pdf Makefile
+## https://vote.phila.gov/voting/vote-by-mail/umova-notice/
+fpca2013jd.signed.pdf: Downloads/fpca2013jd.print.pdf formDrop/jsig.25.pdf
 	pdfjam $< 1 -o /dev/stdout | \
-	cpdf -stamp-on $(word 2, $^) -pos-left "420 330" \
+	cpdf -stamp-on $(word 2, $^) -pos-left "240 75" \
+		-stdin -stdout | \
+	cat > $@
+
+## https://vote.phila.gov/voting/vote-by-mail/umova-notice/
+fpca2013cfs.signed.pdf: Downloads/fpca2013cfs.print.pdf formDrop/csig.25.pdf
+	pdfjam $< 1 -o /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "240 75" \
 		-stdin -stdout | \
 	cat > $@
 
