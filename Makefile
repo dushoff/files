@@ -12,6 +12,7 @@ vim_session:
 ######################################################################
 
 Makefile: | Downloads
+Ignore += Downloads
 Downloads: dir=~
 Downloads:
 	$(linkdir)
