@@ -1,4 +1,4 @@
-## This is Downloads, a _public_ repo for _managing_ Downloads
+## This is files, a _public_ repo for managing files
 
 current: target
 -include target.mk
