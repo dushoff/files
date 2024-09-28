@@ -11,14 +11,7 @@ vim_session:
 
 ######################################################################
 
-Ignore += dfiles
-dfiles.get dfiles.put: cloudFolder=macdrive_root:cloud/Downloads2409/
-dfiles: dir=~/Downloads
-dfiles: 
-	$(linkdirname)
-
-######################################################################
-
+Ignore += *.pdf
 Stelmach_form.signed.pdf: Stelmach_form.print.pdf formDrop/jsig.30.pdf Makefile
 	pdfjam $< 2 -o /dev/stdout | \
 	cpdf -stamp-on $(word 2, $^) -pos-left "420 330" \
@@ -37,7 +30,7 @@ Sources += Makefile
 Ignore += makestuff
 msrepo = https://github.com/dushoff
 
-Makefile: makestuff/00.stamp
+Makefile: makestuff/01.stamp
 makestuff/%.stamp:
 	- $(RM) makestuff/*.stamp
 	(cd makestuff && $(MAKE) pull) || git clone --depth 1 $(msrepo)/makestuff
