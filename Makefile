@@ -11,7 +11,7 @@ vim_session:
 
 ######################################################################
 
-mirrors += stash
+## Don't mirror anything from here; put things into directories mirrored from elsewhere
 
 Downloads/%: | Downloads ;
 Ignore += Downloads
@@ -83,5 +83,4 @@ makestuff/%.stamp:
 -include makestuff/forms.mk
 
 -include makestuff/git.mk
--include makestuff/mirror.mk
 -include makestuff/visual.mk
