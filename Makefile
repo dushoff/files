@@ -11,17 +11,25 @@ vim_session:
 
 ######################################################################
 
-Makefile: | Downloads
+Downloads/%: | Downloads ;
 Ignore += Downloads
 Downloads: dir=~
 Downloads:
 	$(linkdir)
 
+pcloud/%: | pcloud ;
+Ignore += pcloud
+pcloud: dir=~/screens/org/Planning/cloud
+pcloud:
+	$(linkdirname)
+
 ######################################################################
 
-Ignore += *.pdf
+Ignore += *.pdf *.png
 
 ######################################################################
+
+## Voting 2024
 
 ## https://vote.phila.gov/voting/vote-by-mail/umova-notice/
 fpca2013jd.signed.pdf: Downloads/fpca2013jd.print.pdf formDrop/jsig.25.pdf
@@ -36,6 +44,13 @@ fpca2013cfs.signed.pdf: Downloads/fpca2013cfs.print.pdf formDrop/csig.25.pdf
 	cpdf -stamp-on $(word 2, $^) -pos-left "240 75" \
 		-stdin -stdout | \
 	cat > $@
+
+absentee_sticker.pdf: Downloads/jdAbsentee.print.pdf
+	pdfjam -o $@ $< 6
+absentee_sticker.png: absentee_sticker.pdf Makefile
+	convert -crop 300x300 $< $@
+
+######################################################################
 
 Stelmach_form.signed.pdf: Stelmach_form.print.pdf formDrop/jsig.30.pdf
 	pdfjam $< 2 -o /dev/stdout | \
