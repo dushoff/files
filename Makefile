@@ -11,6 +11,8 @@ vim_session:
 
 ######################################################################
 
+mirrors += stash
+
 Downloads/%: | Downloads ;
 Ignore += Downloads
 Downloads: dir=~
@@ -70,7 +72,7 @@ Sources += Makefile
 Ignore += makestuff
 msrepo = https://github.com/dushoff
 
-Makefile: makestuff/01.stamp
+Makefile: makestuff/02.stamp
 makestuff/%.stamp:
 	- $(RM) makestuff/*.stamp
 	(cd makestuff && $(MAKE) pull) || git clone --depth 1 $(msrepo)/makestuff
@@ -81,5 +83,5 @@ makestuff/%.stamp:
 -include makestuff/forms.mk
 
 -include makestuff/git.mk
--include makestuff/cloud.mk
+-include makestuff/mirror.mk
 -include makestuff/visual.mk
