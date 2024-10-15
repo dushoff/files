@@ -31,6 +31,10 @@ Ignore += *.pdf *.png
 
 ######################################################################
 
+## Too tall to be a FB profile
+turkey.jpg: pcloud/turkey.jpg Makefile
+	convert -crop 960x720+500+080 $< $@
+
 ## Voting 2024
 
 ## https://vote.phila.gov/voting/vote-by-mail/umova-notice/
