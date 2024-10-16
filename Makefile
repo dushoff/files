@@ -11,7 +11,9 @@ vim_session:
 
 ######################################################################
 
-Makefile: | Downloads
+## Don't mirror anything from here; put things into directories mirrored from elsewhere
+
+Downloads/%: | Downloads ;
 Ignore += Downloads
 Downloads: dir=~
 Downloads:
@@ -29,6 +31,24 @@ turkey.jpg: Downloads
 
 ######################################################################
 
+pcloud/%: | pcloud ;
+Ignore += pcloud
+pcloud: dir=~/screens/org/Planning/cloud
+pcloud:
+	$(linkdirname)
+
+######################################################################
+
+Ignore += *.pdf *.png *.jpg
+
+######################################################################
+
+## Too tall to be a FB profile
+turkey.jpg: pcloud/turkey.jpg Makefile
+	convert -crop 960x720+500+080 $< $@
+
+## Voting 2024
+
 ## https://vote.phila.gov/voting/vote-by-mail/umova-notice/
 fpca2013jd.signed.pdf: Downloads/fpca2013jd.print.pdf formDrop/jsig.25.pdf
 	pdfjam $< 1 -o /dev/stdout | \
@@ -42,6 +62,13 @@ fpca2013cfs.signed.pdf: Downloads/fpca2013cfs.print.pdf formDrop/csig.25.pdf
 	cpdf -stamp-on $(word 2, $^) -pos-left "240 75" \
 		-stdin -stdout | \
 	cat > $@
+
+absentee_sticker.pdf: Downloads/jdAbsentee.print.pdf
+	pdfjam -o $@ $< 6
+absentee_sticker.png: absentee_sticker.pdf Makefile
+	convert -crop 300x300 $< $@
+
+######################################################################
 
 Stelmach_form.signed.pdf: Stelmach_form.print.pdf formDrop/jsig.30.pdf
 	pdfjam $< 2 -o /dev/stdout | \
@@ -61,7 +88,7 @@ Sources += Makefile
 Ignore += makestuff
 msrepo = https://github.com/dushoff
 
-Makefile: makestuff/01.stamp
+Makefile: makestuff/02.stamp
 makestuff/%.stamp:
 	- $(RM) makestuff/*.stamp
 	(cd makestuff && $(MAKE) pull) || git clone --depth 1 $(msrepo)/makestuff
@@ -72,5 +99,4 @@ makestuff/%.stamp:
 -include makestuff/forms.mk
 
 -include makestuff/git.mk
--include makestuff/mirror.mk
 -include makestuff/visual.mk
