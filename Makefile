@@ -17,9 +17,15 @@ Downloads: dir=~
 Downloads:
 	$(linkdir)
 
+mirrors += cloud
+
 ######################################################################
 
 Ignore += *.pdf
+
+######################################################################
+
+turkey.jpg: Downloads
 
 ######################################################################
 
@@ -66,5 +72,5 @@ makestuff/%.stamp:
 -include makestuff/forms.mk
 
 -include makestuff/git.mk
--include makestuff/cloud.mk
+-include makestuff/mirror.mk
 -include makestuff/visual.mk
