@@ -23,15 +23,8 @@ mirrors += cloud
 
 ######################################################################
 
-Ignore += *.pdf
-
-######################################################################
-
-turkey.jpg: Downloads
-
-######################################################################
-
-pcloud/%: | pcloud ;
+## This breaks things like .go ... use a Makefile dependency or what?
+## pcloud/%: | pcloud ;
 Ignore += pcloud
 pcloud: dir=~/screens/org/Planning/cloud
 pcloud:
@@ -47,7 +40,17 @@ Ignore += *.pdf *.png *.jpg
 turkey.jpg: pcloud/turkey.jpg Makefile
 	convert -crop 960x720+500+080 $< $@
 
-## Voting 2024
+######################################################################
+
+pcloud/durrantReferral.pdf: cloud/durrantReferral.pdf formDrop/jsig.30.pdf Makefile
+	pdfjam $< -o /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "80 360" \
+		-stdin -stdout | \
+	cat > $@
+
+######################################################################
+
+## Voting 2024 
 
 ## https://vote.phila.gov/voting/vote-by-mail/umova-notice/
 fpca2013jd.signed.pdf: Downloads/fpca2013jd.print.pdf formDrop/jsig.25.pdf
@@ -88,7 +91,7 @@ Sources += Makefile
 Ignore += makestuff
 msrepo = https://github.com/dushoff
 
-Makefile: makestuff/02.stamp
+Makefile: makestuff/03.stamp
 makestuff/%.stamp:
 	- $(RM) makestuff/*.stamp
 	(cd makestuff && $(MAKE) pull) || git clone --depth 1 $(msrepo)/makestuff
@@ -97,6 +100,7 @@ makestuff/%.stamp:
 -include makestuff/os.mk
 
 -include makestuff/forms.mk
+-include makestuff/mirror.mk
 
 -include makestuff/git.mk
 -include makestuff/visual.mk
