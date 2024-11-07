@@ -9,6 +9,9 @@ Ignore = target.mk
 vim_session:
 	bash -cl "vmt"
 
+test.md:
+	pandoc -o $@ Downloads/*.docx
+
 ######################################################################
 
 ## Don't mirror anything from here; put things into directories mirrored from elsewhere
