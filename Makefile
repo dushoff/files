@@ -37,7 +37,7 @@ Ignore += *.pdf *.png *.jpg
 ######################################################################
 
 ## Too tall to be a FB profile
-turkey.jpg: pcloud/turkey.jpg Makefile
+turkey.jpg: pcloud/turkey.jpg
 	convert -crop 960x720+500+080 $< $@
 
 ######################################################################
