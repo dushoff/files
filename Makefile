@@ -76,6 +76,20 @@ absentee_sticker.png: absentee_sticker.pdf Makefile
 
 ######################################################################
 
+W9.signed.pdf: cloud/W9.print.pdf formDrop/jsig.30.pdf date_1.2.pdf
+	pdfjam $< 1 -o /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "155 255" \
+		-stdin -stdout | \
+	cpdf -stamp-on $(word 3, $^) -pos-left "315 -670" \
+		-stdin -stdout | \
+	cat > $@
+
+UMD_wire.pdf: cloud/UMD_wire.print.pdf
+	pdfjam $< 1 -o $@
+
+UMD_sub.pdf: W9.signed.pdf UMD_wire.pdf
+	$(pdfdog)
+
 Stelmach_form.signed.pdf: Stelmach_form.print.pdf formDrop/jsig.30.pdf
 	pdfjam $< 2 -o /dev/stdout | \
 	cpdf -stamp-on $(word 2, $^) -pos-left "420 330" \
