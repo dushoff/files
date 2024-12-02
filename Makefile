@@ -76,6 +76,13 @@ absentee_sticker.png: absentee_sticker.pdf Makefile
 
 ######################################################################
 
+## cloud/hutchCurrent.pdf
+hutchCurrent.pdf: cloud/hutchCurrent.print.pdf formDrop/jsig.30.pdf Makefile
+	pdfjam $< 1 -o /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "155 272" \
+		-stdin -stdout | \
+	cat > $@
+
 W9.signed.pdf: cloud/W9.print.pdf formDrop/jsig.30.pdf date_1.2.pdf
 	pdfjam $< 1 -o /dev/stdout | \
 	cpdf -stamp-on $(word 2, $^) -pos-left "155 255" \
