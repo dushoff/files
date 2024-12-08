@@ -76,6 +76,8 @@ absentee_sticker.png: absentee_sticker.pdf Makefile
 
 ######################################################################
 
+Ignore += name.txt
+
 ## cloud/hutchCurrent.pdf
 hutchCurrent.pdf: cloud/hutchCurrent.print.pdf formDrop/jsig.30.pdf Makefile
 	pdfjam $< 1 -o /dev/stdout | \
