@@ -91,8 +91,16 @@ W9.signed.pdf: cloud/W9.print.pdf formDrop/jsig.30.pdf date_1.2.pdf
 		-stdin -stdout | \
 	cat > $@
 
-UMD_wire.pdf: cloud/UMD_wire.print.pdf
-	pdfjam $< 1 -o $@
+## UMD_wire.pdf: Makefile
+UMD_wire.pdf: cloud/UMD_wire.print.pdf formDrop/jsig.30.pdf date_1.2.pdf name_1.2.pdf
+	pdfjam $< 1 -o /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "310  105" \
+		-stdin -stdout | \
+	cpdf -stamp-on $(word 3, $^) -pos-left "335 -820" \
+		-stdin -stdout | \
+	cpdf -stamp-on $(word 4, $^) -pos-left "115 -820" \
+		-stdin -stdout | \
+	cat > $@
 
 UMD_sub.pdf: W9.signed.pdf UMD_wire.pdf
 	$(pdfdog)
@@ -104,7 +112,15 @@ Stelmach_form.signed.pdf: Stelmach_form.print.pdf formDrop/jsig.30.pdf
 	pdfjam $< 1 /dev/stdin 1 $< 3-4 -o /dev/stdout | \
 	cat > $@
 
+## This is the old Downloads Makefile I guess
 Sources += content.mk
+
+## This is probably also the right place for the Makefile that lives in ~/Downloads; accumulate stuff first and them make some sort of link rule
+Sources += Downloads.mk
+
+Downloads/Makefile: fake
+	cd $(dir $@) && ln -fs $(CURDIR)/Downloads.mk $(notdir $@)
+fake: ;
 
 ######################################################################
 
