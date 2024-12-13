@@ -45,7 +45,7 @@ turkey.jpg: pcloud/turkey.jpg
 
 ######################################################################
 
-pcloud/durrantReferral.pdf: cloud/durrantReferral.pdf formDrop/jsig.30.pdf Makefile
+pcloud/durrantReferral.pdf: cloud/durrantReferral.pdf formDrop/jsig.30.pdf
 	pdfjam $< -o /dev/stdout | \
 	cpdf -stamp-on $(word 2, $^) -pos-left "80 360" \
 		-stdin -stdout | \
@@ -71,15 +71,24 @@ fpca2013cfs.signed.pdf: Downloads/fpca2013cfs.print.pdf formDrop/csig.25.pdf
 
 absentee_sticker.pdf: Downloads/jdAbsentee.print.pdf
 	pdfjam -o $@ $< 6
-absentee_sticker.png: absentee_sticker.pdf Makefile
+absentee_sticker.png: absentee_sticker.pdf
 	convert -crop 300x300 $< $@
+
+brinForm.signed.pdf: pcloud/brinForm.pdf.pdf formDrop/jsig.30.pdf
+	pdfjam $< 1 -o /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "155 110" \
+		-stdin -stdout | \
+	cat > $@
+
+brinReimburse.pdf: brinForm.signed.pdf pcloud/unitedBrin.pdf 
+	$(pdfdog)
 
 ######################################################################
 
 Ignore += name.txt
 
 ## cloud/hutchCurrent.pdf
-hutchCurrent.pdf: cloud/hutchCurrent.print.pdf formDrop/jsig.30.pdf Makefile
+hutchCurrent.pdf: cloud/hutchCurrent.print.pdf formDrop/jsig.30.pdf
 	pdfjam $< 1 -o /dev/stdout | \
 	cpdf -stamp-on $(word 2, $^) -pos-left "155 272" \
 		-stdin -stdout | \
