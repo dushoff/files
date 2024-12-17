@@ -115,7 +115,7 @@ UMD_wire.pdf: cloud/UMD_wire.print.pdf formDrop/jsig.30.pdf date_1.2.pdf name_1.
 
 Ignore += *.out
 Ignore += GammaPowerLaw.bib
-GammaPowerLaw.pdf: stash/GammaPowerLaw.tex
+GammaPowerLaw.pdf: cloud/GammaPowerLaw.tex
 	$(RUNLatex)
 
 UMD_sub.pdf: W9.signed.pdf UMD_wire.pdf
