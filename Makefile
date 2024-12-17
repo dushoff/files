@@ -113,6 +113,9 @@ UMD_wire.pdf: cloud/UMD_wire.print.pdf formDrop/jsig.30.pdf date_1.2.pdf name_1.
 		-stdin -stdout | \
 	cat > $@
 
+GammaPowerLaw.pdf: stash/GammaPowerLaw.tex
+	$(RUNLatex)
+
 UMD_sub.pdf: W9.signed.pdf UMD_wire.pdf
 	$(pdfdog)
 
@@ -152,6 +155,7 @@ makestuff/%.stamp:
 
 -include makestuff/forms.mk
 -include makestuff/mirror.mk
+-include makestuff/texj.mk
 
 -include makestuff/git.mk
 -include makestuff/visual.mk
