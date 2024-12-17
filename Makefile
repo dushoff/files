@@ -113,6 +113,8 @@ UMD_wire.pdf: cloud/UMD_wire.print.pdf formDrop/jsig.30.pdf date_1.2.pdf name_1.
 		-stdin -stdout | \
 	cat > $@
 
+Ignore += *.out
+Ignore += GammaPowerLaw.bib
 GammaPowerLaw.pdf: stash/GammaPowerLaw.tex
 	$(RUNLatex)
 
