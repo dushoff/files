@@ -15,6 +15,9 @@ $(folders):
 clean:
 	$(RM) $(folders)
 
+up:
+	cd ~/screens/org/Planning/ && $(MAKE) downup
+
 ######################################################################
 
 update_copies: .
