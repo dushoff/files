@@ -55,6 +55,14 @@ pcloud/durrantReferral.pdf: cloud/durrantReferral.pdf formDrop/jsig.30.pdf
 
 ## Voting 2024 
 
+candidApp.pdf: Downloads/candidApp.pdf formDrop/jsig.30.pdf date_1.2.pdf
+	pdfjam $< 1 -o /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "450 280" \
+		-stdin -stdout | \
+	cpdf -stamp-on $(word 3, $^) -pos-left "350 -680" \
+		-stdin -stdout | \
+	cat > $@
+
 ## https://vote.phila.gov/voting/vote-by-mail/umova-notice/
 fpca2013jd.signed.pdf: Downloads/fpca2013jd.print.pdf formDrop/jsig.25.pdf
 	pdfjam $< 1 -o /dev/stdout | \
