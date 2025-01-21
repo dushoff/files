@@ -1,3 +1,4 @@
+all: update_copies
 runscreen: ;
 
 vim_session: 

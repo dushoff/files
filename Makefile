@@ -4,7 +4,7 @@ current: target
 -include target.mk
 Ignore = target.mk
 
-# -include makestuff/perl.def
+-include makestuff/perl.def
 
 vim_session:
 	bash -cl "vmt"
@@ -50,6 +50,17 @@ pcloud/durrantReferral.pdf: cloud/durrantReferral.pdf formDrop/jsig.30.pdf
 	cpdf -stamp-on $(word 2, $^) -pos-left "80 360" \
 		-stdin -stdout | \
 	cat > $@
+
+######################################################################
+
+## alpine etc.
+
+## contacts.Rout.tsv: contacts.R Downloads/contacts.csv
+contacts.Rout: contacts.R Downloads/contacts.csv
+	$(pipeR)
+
+contacts.txt: contacts.Rout.tsv contacts.pl
+	$(PUSH)
 
 ######################################################################
 
@@ -166,6 +177,7 @@ makestuff/%.stamp:
 -include makestuff/forms.mk
 -include makestuff/mirror.mk
 -include makestuff/texj.mk
+-include makestuff/pipeR.mk
 
 -include makestuff/git.mk
 -include makestuff/visual.mk
