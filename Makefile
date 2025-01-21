@@ -55,10 +55,13 @@ pcloud/durrantReferral.pdf: cloud/durrantReferral.pdf formDrop/jsig.30.pdf
 
 ## alpine etc.
 
+Sources += $(wildcard *.R)
+
 ## contacts.Rout.tsv: contacts.R Downloads/contacts.csv
 contacts.Rout: contacts.R Downloads/contacts.csv
 	$(pipeR)
 
+Ignore += contacts.txt
 contacts.txt: contacts.Rout.tsv contacts.pl
 	$(PUSH)
 
