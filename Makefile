@@ -51,6 +51,12 @@ pcloud/durrantReferral.pdf: cloud/durrantReferral.pdf formDrop/jsig.30.pdf
 		-stdin -stdout | \
 	cat > $@
 
+Downloads/dongXuanFinal.sig.pdf: pcloud/dongXuan.pdf formDrop/jsig.30.pdf Makefile
+	pdfjam $< 4 -o /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "110 245" \
+		-stdin -stdout | \
+	cat > $@
+
 ######################################################################
 
 ## alpine etc.
