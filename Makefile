@@ -113,7 +113,7 @@ brinReimburse.pdf: brinForm.signed.pdf pcloud/unitedBrin.pdf
 
 ######################################################################
 
-Ignore += name.txt
+Ignore += name.txt X.txt
 
 ## cloud/hutchCurrent.pdf
 hutchCurrent.pdf: cloud/hutchCurrent.print.pdf formDrop/jsig.30.pdf
@@ -161,6 +161,10 @@ Sources += content.mk
 
 ## This is probably also the right place for the Makefile that lives in ~/Downloads; accumulate stuff first and them make some sort of link rule
 Sources += Downloads.mk
+
+Sources += $(wildcard *.mk)
+
+-include dongxuan.mk
 
 Downloads/Makefile: fake
 	cd $(dir $@) && ln -fs $(CURDIR)/Downloads.mk $(notdir $@)
