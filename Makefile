@@ -14,14 +14,17 @@ test.md:
 
 ######################################################################
 
-## Don't mirror anything from here; put things into directories mirrored from elsewhere
+## Don't mirror anything from here; put things into directories mirrored from elsewhere …
 
-Downloads/%: | Downloads ;
+## This breaks Downloads.*go – not order-dependent, deep makinessH
+## Downloads/%: | Downloads ;
+Makefile: | Downloads
 Ignore += Downloads
 Downloads: dir=~
 Downloads:
 	$(linkdir)
 
+## Haven't quite kept this up, and not sure why it matters
 mirrors += cloud
 
 ######################################################################
@@ -51,9 +54,15 @@ pcloud/durrantReferral.pdf: cloud/durrantReferral.pdf formDrop/jsig.30.pdf
 		-stdin -stdout | \
 	cat > $@
 
-Downloads/dongXuanFinal.sig.pdf: pcloud/dongXuan.pdf formDrop/jsig.30.pdf Makefile
+Downloads/dongXuanFinal.sig.pdf: pcloud/dongXuan.pdf formDrop/jsig.30.pdf
 	pdfjam $< 4 -o /dev/stdout | \
 	cpdf -stamp-on $(word 2, $^) -pos-left "110 245" \
+		-stdin -stdout | \
+	cat > $@
+
+Downloads/hkuEFT.pdf: pcloud/hkuEFT.print.pdf formDrop/jsig.30.pdf Makefile
+	pdfjam $< -o /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "117 167" \
 		-stdin -stdout | \
 	cat > $@
 
