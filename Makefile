@@ -4,7 +4,7 @@ current: target
 -include target.mk
 Ignore = target.mk
 
-# -include makestuff/perl.def
+-include makestuff/perl.def
 
 vim_session:
 	bash -cl "vmt"
@@ -14,14 +14,17 @@ test.md:
 
 ######################################################################
 
-## Don't mirror anything from here; put things into directories mirrored from elsewhere
+## Don't mirror anything from here; put things into directories mirrored from elsewhere …
 
-Downloads/%: | Downloads ;
+## This breaks Downloads.*go – not order-dependent, deep makinessH
+## Downloads/%: | Downloads ;
+Makefile: | Downloads
 Ignore += Downloads
 Downloads: dir=~
 Downloads:
 	$(linkdir)
 
+## Haven't quite kept this up, and not sure why it matters
 mirrors += cloud
 
 ######################################################################
@@ -51,6 +54,32 @@ pcloud/durrantReferral.pdf: cloud/durrantReferral.pdf formDrop/jsig.30.pdf
 		-stdin -stdout | \
 	cat > $@
 
+Downloads/dongXuanFinal.sig.pdf: pcloud/dongXuan.pdf formDrop/jsig.30.pdf
+	pdfjam $< 4 -o /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "110 245" \
+		-stdin -stdout | \
+	cat > $@
+
+Downloads/hkuEFT.pdf: pcloud/hkuEFT.print.pdf formDrop/jsig.30.pdf Makefile
+	pdfjam $< -o /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "117 167" \
+		-stdin -stdout | \
+	cat > $@
+
+######################################################################
+
+## alpine etc.
+
+Sources += $(wildcard *.R)
+
+## contacts.Rout.tsv: contacts.R Downloads/contacts.csv
+contacts.Rout: contacts.R Downloads/contacts.csv
+	$(pipeR)
+
+Ignore += contacts.txt
+contacts.txt: contacts.Rout.tsv contacts.pl
+	$(PUSH)
+
 ######################################################################
 
 brinForm.signed.pdf: pcloud/brinForm.pdf.pdf formDrop/jsig.30.pdf
@@ -64,7 +93,7 @@ brinReimburse.pdf: brinForm.signed.pdf pcloud/unitedBrin.pdf
 
 ######################################################################
 
-Ignore += name.txt
+Ignore += name.txt X.txt
 
 ## cloud/hutchCurrent.pdf
 hutchCurrent.pdf: cloud/hutchCurrent.print.pdf formDrop/jsig.30.pdf
@@ -113,6 +142,10 @@ Sources += content.mk
 ## This is probably also the right place for the Makefile that lives in ~/Downloads; accumulate stuff first and them make some sort of link rule
 Sources += Downloads.mk
 
+Sources += $(wildcard *.mk)
+
+-include dongxuan.mk
+
 Downloads/Makefile: fake
 	cd $(dir $@) && ln -fs $(CURDIR)/Downloads.mk $(notdir $@)
 fake: ;
@@ -137,6 +170,7 @@ makestuff/%.stamp:
 -include makestuff/forms.mk
 -include makestuff/mirror.mk
 -include makestuff/texj.mk
+-include makestuff/pipeR.mk
 
 -include makestuff/git.mk
 -include makestuff/visual.mk

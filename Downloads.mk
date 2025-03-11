@@ -1,7 +1,8 @@
+all: update_copies
 runscreen: ;
 
 vim_session: 
-	bash -cl "vmt"
+	bash -cl "vmt" ~/screens/org/files/Downloads.mk
 
 ######################################################################
 
@@ -17,6 +18,9 @@ clean:
 
 up:
 	cd ~/screens/org/Planning/ && $(MAKE) downup
+
+down: 
+	cd ~/screens/org/Planning/ && $(MAKE) Downloads.get
 
 ######################################################################
 
