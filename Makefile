@@ -53,35 +53,6 @@ pcloud/durrantReferral.pdf: cloud/durrantReferral.pdf formDrop/jsig.30.pdf
 
 ######################################################################
 
-## Voting 2024 
-
-candidApp.pdf: Downloads/candidApp.pdf formDrop/jsig.30.pdf date_1.2.pdf
-	pdfjam $< 1 -o /dev/stdout | \
-	cpdf -stamp-on $(word 2, $^) -pos-left "450 280" \
-		-stdin -stdout | \
-	cpdf -stamp-on $(word 3, $^) -pos-left "350 -680" \
-		-stdin -stdout | \
-	cat > $@
-
-## https://vote.phila.gov/voting/vote-by-mail/umova-notice/
-fpca2013jd.signed.pdf: Downloads/fpca2013jd.print.pdf formDrop/jsig.25.pdf
-	pdfjam $< 1 -o /dev/stdout | \
-	cpdf -stamp-on $(word 2, $^) -pos-left "240 75" \
-		-stdin -stdout | \
-	cat > $@
-
-## https://vote.phila.gov/voting/vote-by-mail/umova-notice/
-fpca2013cfs.signed.pdf: Downloads/fpca2013cfs.print.pdf formDrop/csig.25.pdf
-	pdfjam $< 1 -o /dev/stdout | \
-	cpdf -stamp-on $(word 2, $^) -pos-left "240 75" \
-		-stdin -stdout | \
-	cat > $@
-
-absentee_sticker.pdf: Downloads/jdAbsentee.print.pdf
-	pdfjam -o $@ $< 6
-absentee_sticker.png: absentee_sticker.pdf
-	convert -crop 300x300 $< $@
-
 brinForm.signed.pdf: pcloud/brinForm.pdf.pdf formDrop/jsig.30.pdf
 	pdfjam $< 1 -o /dev/stdout | \
 	cpdf -stamp-on $(word 2, $^) -pos-left "155 110" \
@@ -155,7 +126,7 @@ Sources += Makefile
 Ignore += makestuff
 msrepo = https://github.com/dushoff
 
-Makefile: makestuff/03.stamp
+Makefile: makestuff/04.stamp
 makestuff/%.stamp:
 	- $(RM) makestuff/*.stamp
 	(cd makestuff && $(MAKE) pull) || git clone --depth 1 $(msrepo)/makestuff
