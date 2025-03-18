@@ -30,10 +30,17 @@ mirrors += cloud
 ######################################################################
 
 ## This breaks things like .go ... use a Makefile dependency or what?
+## Or don't make things there from here??
 ## pcloud/%: | pcloud ;
 Ignore += pcloud
 pcloud: dir=~/screens/org/Planning/cloud
 pcloud:
+	$(linkdirname)
+
+stash/%: | stash ;
+Ignore += stash
+stash: dir=~/screens/org/Planning/stash
+stash:
 	$(linkdirname)
 
 ######################################################################
@@ -42,11 +49,32 @@ Ignore += *.pdf *.png *.jpg
 
 ######################################################################
 
+## Compile reimbursement requests
+
+pdaRequest.pdf: pdaRequest.lpr.pdf
+	pdfjam -o $@ $< 1
+Downloads/pdaRequest.pdf: pdaRequest.print.pdf stash/pdaNarrative.pdf stash/entertainment.pdf stash/phoenixForm.pdf
+	$(pdfcat)
+
+######################################################################
+
 ## Too tall to be a FB profile
 turkey.jpg: pcloud/turkey.jpg
 	convert -crop 960x720+500+080 $< $@
 
 ######################################################################
+
+Sources += signing.md
+
+## Signing
+Downloads/SFUF300.pdf: Makefile
+Downloads/SFUF300.pdf: cloud/SFUF300.pdf formDrop/jsig.30.pdf date_1.2.pdf
+	pdfjam $< 1 -o /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "50  160" \
+		-stdin -stdout | \
+	cpdf -stamp-on $(word 3, $^) -pos-left "10 -820" \
+		-stdin -stdout | \
+	cat > $@
 
 pcloud/durrantReferral.pdf: cloud/durrantReferral.pdf formDrop/jsig.30.pdf
 	pdfjam $< -o /dev/stdout | \
@@ -110,7 +138,6 @@ W9.signed.pdf: cloud/W9.print.pdf formDrop/jsig.30.pdf date_1.2.pdf
 		-stdin -stdout | \
 	cat > $@
 
-## UMD_wire.pdf: Makefile
 UMD_wire.pdf: cloud/UMD_wire.print.pdf formDrop/jsig.30.pdf date_1.2.pdf name_1.2.pdf
 	pdfjam $< 1 -o /dev/stdout | \
 	cpdf -stamp-on $(word 2, $^) -pos-left "310  105" \
@@ -149,6 +176,11 @@ Sources += $(wildcard *.mk)
 Downloads/Makefile: fake
 	cd $(dir $@) && ln -fs $(CURDIR)/Downloads.mk $(notdir $@)
 fake: ;
+
+## If we want to take stuff directly from pcloud (or maybe stash?)
+## To use a local file, use .print instead
+%.lpr.pdf: pcloud/%.pdf | ~/PDF
+	$(cups_print)
 
 ######################################################################
 
