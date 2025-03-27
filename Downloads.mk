@@ -13,6 +13,9 @@ folders: $(folders)
 $(folders):
 	/bin/ln -s ~/screens/org/Planning/$@ .
 
+nuke:
+	$(RM) *.*
+
 clean:
 	$(RM) $(folders)
 
