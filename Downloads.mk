@@ -22,6 +22,11 @@ up:
 down: 
 	cd ~/screens/org/Planning/ && $(MAKE) Downloads.get
 
+new:
+	mkdir -p $@
+	cp *.zip $@
+	cd $@ && bash -cl lastunzip && del *.zip
+
 ######################################################################
 
 update_copies: .
