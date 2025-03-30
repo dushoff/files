@@ -96,6 +96,16 @@ Downloads/hkuEFT.pdf: pcloud/hkuEFT.print.pdf formDrop/jsig.30.pdf Makefile
 
 ######################################################################
 
+## ll.left.jpg: ll.jpg
+
+%.left.jpg: %.jpg
+	convert -rotate 270 $< $@
+
+%.right.jpg: %.jpg
+	convert -rotate 90 $< $@ 
+
+######################################################################
+
 ## alpine etc.
 
 Sources += $(wildcard *.R)
