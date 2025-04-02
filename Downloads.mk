@@ -13,7 +13,9 @@ folders: $(folders)
 $(folders):
 	/bin/ln -s ~/screens/org/Planning/$@ .
 
-nuke:
+nuke: delall clean up
+
+delall:
 	$(RM) *.*
 
 clean:
