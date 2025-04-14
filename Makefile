@@ -56,6 +56,8 @@ pdaRequest.pdf: pdaRequest.lpr.pdf
 Downloads/pdaRequest.pdf: pdaRequest.print.pdf stash/pdaNarrative.pdf stash/entertainment.pdf stash/phoenixForm.pdf
 	$(pdfcat)
 
+## Downloads/memEligible.print.pdf:
+
 ######################################################################
 
 ## Too tall to be a FB profile
