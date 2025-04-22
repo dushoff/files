@@ -1,3 +1,3 @@
-target = Downloads/memEligible.print.pdf 
+target = size.pdf 
 target gptarget pushtarget pngtarget pdftarget vtarget acrtarget: $(target)
 

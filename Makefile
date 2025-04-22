@@ -14,6 +14,9 @@ test.md:
 
 ######################################################################
 
+## lpr.pdf to from pcloud to here
+## print.pdf to print from where?
+
 ## Don't mirror anything from here; put things into directories mirrored from elsewhere …
 
 ## This breaks Downloads.*go – not order-dependent, deep makinessH
@@ -95,6 +98,19 @@ Downloads/hkuEFT.pdf: pcloud/hkuEFT.print.pdf formDrop/jsig.30.pdf Makefile
 	cpdf -stamp-on $(word 2, $^) -pos-left "117 167" \
 		-stdin -stdout | \
 	cat > $@
+
+Downloads/HutchLabGrade.pdf: cloud/HutchLabGrade.print.pdf formDrop/jsig.30.pdf
+	pdfjam $< -o /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "150 275" \
+		-stdin -stdout | \
+	cat > $@
+
+######################################################################
+
+## Playing
+
+size.pdf: size.txt Makefile
+	pdfroff $< > $@
 
 ######################################################################
 
