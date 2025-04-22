@@ -109,6 +109,7 @@ Downloads/HutchLabGrade.pdf: cloud/HutchLabGrade.print.pdf formDrop/jsig.30.pdf
 
 ## Playing
 
+Sources += size.txt
 size.pdf: size.txt Makefile
 	pdfroff $< > $@
 
