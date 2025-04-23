@@ -32,6 +32,13 @@ new:
 	cp *.zip $@
 	cd $@ && bash -cl lastunzip && del *.zip
 
+%.contents: contents
+	mv $< $*
+
+contents: 
+	mkdir $@
+	mv *.* $@
+
 ######################################################################
 
 update_copies: .
@@ -41,3 +48,6 @@ update_copies: .
 quote_names:
 	rename -f "s/'//" *.*
 
+filenames: ..filenames ;
+%.filenames:
+	rename "s/[()& ,?!-]+/_/g" $*/*.*

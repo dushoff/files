@@ -3,6 +3,7 @@
 current: target
 -include target.mk
 Ignore = target.mk
+## Figure out how to filter this out from wildcard below
 
 -include makestuff/perl.def
 
@@ -13,6 +14,9 @@ test.md:
 	pandoc -o $@ Downloads/*.docx
 
 ######################################################################
+
+## lpr.pdf to from pcloud to here
+## print.pdf to print from where?
 
 ## Don't mirror anything from here; put things into directories mirrored from elsewhere …
 
@@ -96,6 +100,20 @@ Downloads/hkuEFT.pdf: pcloud/hkuEFT.print.pdf formDrop/jsig.30.pdf Makefile
 		-stdin -stdout | \
 	cat > $@
 
+Downloads/HutchLabGrade.pdf: cloud/HutchLabGrade.print.pdf formDrop/jsig.30.pdf
+	pdfjam $< -o /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "150 275" \
+		-stdin -stdout | \
+	cat > $@
+
+######################################################################
+
+## Playing
+
+Sources += size.txt
+size.pdf: size.txt Makefile
+	pdfroff $< > $@
+
 ######################################################################
 
 ## ll.left.jpg: ll.jpg
@@ -135,10 +153,10 @@ brinReimburse.pdf: brinForm.signed.pdf pcloud/unitedBrin.pdf
 
 Ignore += name.txt X.txt
 
-## cloud/hutchCurrent.pdf
-hutchCurrent.pdf: cloud/hutchCurrent.print.pdf formDrop/jsig.30.pdf
+## cloud/hutchCurrent.pdf (gD here)
+hutchCurrent.pdf: cloud/hutchCurrent.print.pdf formDrop/jsig.30.pdf Makefile
 	pdfjam $< 1 -o /dev/stdout | \
-	cpdf -stamp-on $(word 2, $^) -pos-left "155 272" \
+	cpdf -stamp-on $(word 2, $^) -pos-left "365 262" \
 		-stdin -stdout | \
 	cat > $@
 
@@ -181,7 +199,9 @@ Sources += content.mk
 ## This is probably also the right place for the Makefile that lives in ~/Downloads; accumulate stuff first and them make some sort of link rule
 Sources += Downloads.mk
 
-Sources += $(wildcard *.mk)
+Sources += $(filter-out target.mk, $(wildcard *.mk))
+
+prompt:
 
 -include dongxuan.mk
 
@@ -190,7 +210,7 @@ Downloads/Makefile: fake
 fake: ;
 
 ## If we want to take stuff directly from pcloud (or maybe stash?)
-## To use a local file, use .print instead
+## To use a local file, use .print instead (from forms.mk)
 %.lpr.pdf: pcloud/%.pdf | ~/PDF
 	$(cups_print)
 
