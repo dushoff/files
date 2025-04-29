@@ -124,6 +124,12 @@ size.pdf: size.txt Makefile
 %.right.jpg: %.jpg
 	convert -rotate 90 $< $@ 
 
+mmedFlyer.jpg: stash/mmedFlyer.pdf Makefile
+
+mmedFlyer.png: stash/mmedFlyer.pdf Makefile
+	convert -density 400 -trim -quality 95 -sharpen 0x1.0 $< $@
+	## convert $< $@
+
 ######################################################################
 
 ## alpine etc.
