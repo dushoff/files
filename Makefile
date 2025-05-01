@@ -82,6 +82,15 @@ Downloads/SFUF300.pdf: cloud/SFUF300.pdf formDrop/jsig.30.pdf date_1.2.pdf
 		-stdin -stdout | \
 	cat > $@
 
+jezreelTransfer.sig.pdf: stash/jezreelTransfer.print.pdf formDrop/jsig.30.pdf Makefile
+	pdfjam $< 2 -o /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "270 190" \
+		-stdin -stdout | \
+	cat > $@
+
+jezreelTransfer.pages.pdf: stash/jezreelTransfer.print.pdf jezreelTransfer.sig.pdf Makefile
+	pdfjam -o $@ $< 1 $(word 2, $^)
+
 pcloud/durrantReferral.pdf: cloud/durrantReferral.pdf formDrop/jsig.30.pdf
 	pdfjam $< -o /dev/stdout | \
 	cpdf -stamp-on $(word 2, $^) -pos-left "80 360" \
@@ -218,6 +227,12 @@ fake: ;
 ## If we want to take stuff directly from pcloud (or maybe stash?)
 ## To use a local file, use .print instead (from forms.mk)
 %.lpr.pdf: pcloud/%.pdf | ~/PDF
+	$(cups_print)
+
+%.lpr.pdf: stash/%.pdf | ~/PDF
+	$(cups_print)
+
+%.lpr.pdf: cloud/%.pdf | ~/PDF
 	$(cups_print)
 
 ######################################################################
