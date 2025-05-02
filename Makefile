@@ -109,6 +109,12 @@ Downloads/hkuEFT.pdf: pcloud/hkuEFT.print.pdf formDrop/jsig.30.pdf Makefile
 		-stdin -stdout | \
 	cat > $@
 
+Downloads/mckeeFirst.signed.pdf: Downloads/mckeeFirst.print.pdf formDrop/jsig.30.pdf Makefile
+	pdfjam $< -o /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "400 257" \
+		-stdin -stdout | \
+	cat > $@
+
 Downloads/HutchLabGrade.pdf: cloud/HutchLabGrade.print.pdf formDrop/jsig.30.pdf
 	pdfjam $< -o /dev/stdout | \
 	cpdf -stamp-on $(word 2, $^) -pos-left "150 275" \
