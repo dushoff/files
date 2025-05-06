@@ -15,8 +15,8 @@ test.md:
 
 ######################################################################
 
-## lpr.pdf to from pcloud to here
-## print.pdf straight to print 
+## lpr.pdf from elsewhere to here
+## print.pdf stay in place
 
 ## Don't mirror anything from here; put things into directories mirrored from elsewhere …
 
@@ -50,6 +50,12 @@ stash:
 ######################################################################
 
 Ignore += *.pdf *.png *.jpg
+
+######################################################################
+
+## Current
+
+hiring.lpr.pdf: Downloads/hiring.pdf
 
 ######################################################################
 
@@ -233,6 +239,9 @@ fake: ;
 ## If we want to take stuff directly from pcloud (or maybe stash?)
 ## To use a local file, use .print instead (from forms.mk)
 %.lpr.pdf: pcloud/%.pdf | ~/PDF
+	$(cups_print)
+
+%.lpr.pdf: Downloads/%.pdf | ~/PDF
 	$(cups_print)
 
 %.lpr.pdf: stash/%.pdf | ~/PDF
