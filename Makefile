@@ -16,7 +16,7 @@ test.md:
 ######################################################################
 
 ## lpr.pdf to from pcloud to here
-## print.pdf to print from where?
+## print.pdf straight to print 
 
 ## Don't mirror anything from here; put things into directories mirrored from elsewhere …
 
