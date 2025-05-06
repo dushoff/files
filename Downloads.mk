@@ -21,10 +21,10 @@ delall:
 clean:
 	$(RM) $(folders)
 
-up:
+put up:
 	cd ~/screens/org/Planning/ && $(MAKE) downup
 
-down: 
+get down: 
 	cd ~/screens/org/Planning/ && $(MAKE) Downloads.get
 
 new:
