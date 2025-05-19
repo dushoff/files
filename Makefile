@@ -178,15 +178,15 @@ brinReimburse.pdf: brinForm.signed.pdf pcloud/unitedBrin.pdf
 
 ######################################################################
 
-Ignore += name.txt X.txt
+Ignore += name.txt
 
-key.sig.pdf: cloud/key.pdf formDrop/jsig.30.pdf 26313.echo.txt.pdf
+key.sig.pdf: cloud/key.print.pdf formDrop/jsig.30.pdf 26313.echo.txt.pdf Makefile
 	pdfjam $< 1 -o /dev/stdout | \
 	cpdf -stamp-on $(word 2, $^) -pos-left "148 118" \
 		-stdin -stdout | \
-	cpdf -stamp-on $(word 3, $^) -pos-left "350 118" \
+	cpdf -stamp-on $(word 3, $^) -pos-left "405 -648" \
 		-stdin -stdout | \
-	cat > $@
+	pdfjam -o $@ /dev/stdin 1 $< 2
 
 ## cloud/hutchCurrent.pdf (gD here)
 hutchCurrent.pdf: cloud/hutchCurrent.print.pdf formDrop/jsig.30.pdf Makefile
