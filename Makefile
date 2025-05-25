@@ -3,6 +3,7 @@
 current: target
 -include target.mk
 Ignore = target.mk
+## Figure out how to filter this out from wildcard below
 
 -include makestuff/perl.def
 
@@ -13,6 +14,9 @@ test.md:
 	pandoc -o $@ Downloads/*.docx
 
 ######################################################################
+
+## lpr.pdf from elsewhere to here
+## print.pdf stay in place
 
 ## Don't mirror anything from here; put things into directories mirrored from elsewhere …
 
@@ -49,6 +53,12 @@ Ignore += *.pdf *.png *.jpg
 
 ######################################################################
 
+## Current
+
+hiring.lpr.pdf: Downloads/hiring.pdf
+
+######################################################################
+
 ## Compile reimbursement requests
 
 pdaRequest.pdf: pdaRequest.lpr.pdf
@@ -78,6 +88,15 @@ Downloads/SFUF300.pdf: cloud/SFUF300.pdf formDrop/jsig.30.pdf date_1.2.pdf
 		-stdin -stdout | \
 	cat > $@
 
+jezreelTransfer.sig.pdf: stash/jezreelTransfer.print.pdf formDrop/jsig.30.pdf Makefile
+	pdfjam $< 2 -o /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "270 190" \
+		-stdin -stdout | \
+	cat > $@
+
+jezreelTransfer.pages.pdf: stash/jezreelTransfer.print.pdf jezreelTransfer.sig.pdf Makefile
+	pdfjam -o $@ $< 1 $(word 2, $^)
+
 pcloud/durrantReferral.pdf: cloud/durrantReferral.pdf formDrop/jsig.30.pdf
 	pdfjam $< -o /dev/stdout | \
 	cpdf -stamp-on $(word 2, $^) -pos-left "80 360" \
@@ -96,6 +115,26 @@ Downloads/hkuEFT.pdf: pcloud/hkuEFT.print.pdf formDrop/jsig.30.pdf Makefile
 		-stdin -stdout | \
 	cat > $@
 
+Downloads/mckeeFirst.signed.pdf: Downloads/mckeeFirst.print.pdf formDrop/jsig.30.pdf Makefile
+	pdfjam $< -o /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "400 257" \
+		-stdin -stdout | \
+	cat > $@
+
+Downloads/HutchLabGrade.pdf: cloud/HutchLabGrade.print.pdf formDrop/jsig.30.pdf
+	pdfjam $< -o /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "150 275" \
+		-stdin -stdout | \
+	cat > $@
+
+######################################################################
+
+## Playing
+
+Sources += size.txt
+size.pdf: size.txt Makefile
+	pdfroff $< > $@
+
 ######################################################################
 
 ## am.right.jpg: am.jpg
@@ -105,6 +144,12 @@ Downloads/hkuEFT.pdf: pcloud/hkuEFT.print.pdf formDrop/jsig.30.pdf Makefile
 
 %.right.jpg: %.jpg
 	convert -rotate 90 $< $@ 
+
+mmedFlyer.jpg: stash/mmedFlyer.pdf Makefile
+
+mmedFlyer.png: stash/mmedFlyer.pdf Makefile
+	convert -density 400 -trim -quality 95 -sharpen 0x1.0 $< $@
+	## convert $< $@
 
 ######################################################################
 
@@ -133,12 +178,20 @@ brinReimburse.pdf: brinForm.signed.pdf pcloud/unitedBrin.pdf
 
 ######################################################################
 
-Ignore += name.txt X.txt
+Ignore += name.txt
 
-## cloud/hutchCurrent.pdf
-hutchCurrent.pdf: cloud/hutchCurrent.print.pdf formDrop/jsig.30.pdf
+key.sig.pdf: cloud/key.print.pdf formDrop/jsig.30.pdf 26313.echo.txt.pdf Makefile
 	pdfjam $< 1 -o /dev/stdout | \
-	cpdf -stamp-on $(word 2, $^) -pos-left "155 272" \
+	cpdf -stamp-on $(word 2, $^) -pos-left "148 118" \
+		-stdin -stdout | \
+	cpdf -stamp-on $(word 3, $^) -pos-left "405 -648" \
+		-stdin -stdout | \
+	pdfjam -o $@ /dev/stdin 1 $< 2
+
+## cloud/hutchCurrent.pdf (gD here)
+hutchCurrent.pdf: cloud/hutchCurrent.print.pdf formDrop/jsig.30.pdf Makefile
+	pdfjam $< 1 -o /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "365 262" \
 		-stdin -stdout | \
 	cat > $@
 
@@ -181,7 +234,9 @@ Sources += content.mk
 ## This is probably also the right place for the Makefile that lives in ~/Downloads; accumulate stuff first and them make some sort of link rule
 Sources += Downloads.mk
 
-Sources += $(wildcard *.mk)
+Sources += $(filter-out target.mk, $(wildcard *.mk))
+
+prompt:
 
 -include dongxuan.mk
 
@@ -190,8 +245,17 @@ Downloads/Makefile: fake
 fake: ;
 
 ## If we want to take stuff directly from pcloud (or maybe stash?)
-## To use a local file, use .print instead
+## To use a local file, use .print instead (from forms.mk)
 %.lpr.pdf: pcloud/%.pdf | ~/PDF
+	$(cups_print)
+
+%.lpr.pdf: Downloads/%.pdf | ~/PDF
+	$(cups_print)
+
+%.lpr.pdf: stash/%.pdf | ~/PDF
+	$(cups_print)
+
+%.lpr.pdf: cloud/%.pdf | ~/PDF
 	$(cups_print)
 
 ######################################################################

@@ -21,16 +21,23 @@ delall:
 clean:
 	$(RM) $(folders)
 
-up:
+put up:
 	cd ~/screens/org/Planning/ && $(MAKE) downup
 
-down: 
+get down: 
 	cd ~/screens/org/Planning/ && $(MAKE) Downloads.get
 
 new:
 	mkdir -p $@
 	cp *.zip $@
 	cd $@ && bash -cl lastunzip && del *.zip
+
+%.contents: contents
+	mv $< $*
+
+contents: 
+	mkdir $@
+	mv *.* $@
 
 ######################################################################
 
@@ -41,3 +48,6 @@ update_copies: .
 quote_names:
 	rename -f "s/'//" *.*
 
+filenames: ..filenames ;
+%.filenames:
+	rename "s/[()& ,?!-]+/_/g" $*/*.*
