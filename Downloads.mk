@@ -2,7 +2,7 @@ all: update_copies
 runscreen: ;
 
 vim_session: 
-	bash -cl "vmt" ~/screens/org/files/Downloads.mk
+	bash -cl "vm ~/screens/org/files/Downloads.mk"
 
 ######################################################################
 
