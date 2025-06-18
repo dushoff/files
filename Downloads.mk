@@ -30,7 +30,7 @@ get down:
 new:
 	mkdir -p $@
 	cp *.zip $@
-	cd $@ && bash -cl lastunzip && del *.zip
+	cd $@ && bash -cl lastunzip && $(RM) *.zip
 
 %.contents: contents
 	mv $< $*
