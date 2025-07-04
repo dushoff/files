@@ -2,7 +2,7 @@ all: update_copies
 runscreen: ;
 
 vim_session: 
-	bash -cl "vmt" ~/screens/org/files/Downloads.mk
+	bash -cl "vm ~/screens/org/files/Downloads.mk"
 
 ######################################################################
 
@@ -30,7 +30,7 @@ get down:
 new:
 	mkdir -p $@
 	cp *.zip $@
-	cd $@ && bash -cl lastunzip && del *.zip
+	cd $@ && bash -cl lastunzip && $(RM) *.zip
 
 %.contents: contents
 	mv $< $*

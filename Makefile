@@ -144,7 +144,7 @@ size.pdf: size.txt Makefile
 
 ######################################################################
 
-## ll.left.jpg: ll.jpg
+## am.right.jpg: am.jpg
 
 %.left.jpg: %.jpg
 	convert -rotate 270 $< $@
