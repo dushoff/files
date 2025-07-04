@@ -20,6 +20,13 @@ test.md:
 
 ## Don't mirror anything from here; put things into directories mirrored from elsewhere …
 
+olympia.pdf: stash/pdaRequest.print.pdf stash/olympia.pdf
+	pdfjam -o $@ $< 1 $(word 2, $^)
+
+stash/pdaRequest.print.pdf: stash/pdaRequest.pdf
+
+######################################################################
+
 ## This breaks Downloads.*go – not order-dependent, deep makinessH
 ## Downloads/%: | Downloads ;
 Makefile: | Downloads
