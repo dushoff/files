@@ -27,6 +27,21 @@ stash/pdaRequest.print.pdf: stash/pdaRequest.pdf
 
 ######################################################################
 
+## This directory has its own cloud, and references the focal cloud as pcloud
+
+## select doesn't calculate the dependency, so this should not be commented
+pcloud/glasgowRequest.print.1-2.select.pdf: pcloud/glasgowRequest.pdf
+
+glasgowFiles = pcloud/glasgowRequest.print.1-2.select.pdf
+glasgowFiles += stash/uberGLA.1.receipt.pdf
+glasgowFiles += stash/uberKelvin.2.receipt.pdf
+glasgowFiles += stash/porGla.3.receipt.pdf
+glasgowFiles += stash/bnbGla.4.receipt.pdf
+glasgow.pdf: $(glasgowFiles)
+	$(pdfcat)
+
+######################################################################
+
 ## This breaks Downloads.*go – not order-dependent, deep makinessH
 ## Downloads/%: | Downloads ;
 Makefile: | Downloads
@@ -283,6 +298,7 @@ makestuff/%.stamp:
 -include makestuff/os.mk
 
 -include makestuff/forms.mk
+-include makestuff/receipts.mk
 -include makestuff/mirror.mk
 -include makestuff/texj.mk
 -include makestuff/pipeR.mk
