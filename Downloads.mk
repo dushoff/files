@@ -1,3 +1,4 @@
+## This file is _included_ from the Downloads actual Makefile
 all: update_copies
 runscreen: ;
 
