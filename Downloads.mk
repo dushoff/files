@@ -5,6 +5,8 @@ runscreen: ;
 vim_session: 
 	bash -cl "vm ~/screens/org/files/Downloads.mk"
 
+## Avoid doing stuff here; that's what files is for
+
 ######################################################################
 
 folders += stash library cloud reviewDocs sent

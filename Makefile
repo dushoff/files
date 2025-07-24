@@ -27,6 +27,10 @@ stash/pdaRequest.print.pdf: stash/pdaRequest.pdf
 
 ######################################################################
 
+mystery.png: stash/funny.png ; $(rleft)
+
+######################################################################
+
 ## Tech is fun, but you should do SACEMA on the remarkable (too many blanks)
 ## Or maybe keep p1 and p3 from here.
 
@@ -194,8 +198,11 @@ address.txt.pdf: address.txt Makefile
 
 ## am.right.jpg: am.jpg
 
+rleft = convert -rotate 270 $< $@
+rright = convert -rotate 90 $< $@ 
+
 %.left.jpg: %.jpg
-	convert -rotate 270 $< $@
+	$(rleft)
 
 %.right.jpg: %.jpg
 	convert -rotate 90 $< $@ 
