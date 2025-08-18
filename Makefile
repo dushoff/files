@@ -27,6 +27,54 @@ stash/pdaRequest.print.pdf: stash/pdaRequest.pdf
 
 ######################################################################
 
+mystery.png: stash/funny.png ; $(rleft)
+
+######################################################################
+
+## Tech is fun, but you should do SACEMA on the remarkable (too many blanks)
+## Or maybe keep p1 and p3 from here.
+
+sacemaName.pdf: stash/contract.1.select.pdf name.pdf Makefile
+	cat $< > /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "200 -265" \
+		-stdin -stdout | \
+	cat > $@
+
+sacemaFill.pdf: stash/contract.3.select.pdf address.txt.pdf Makefile
+	cat $< > /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "200 -615" \
+		-stdin -stdout | \
+	cat > $@
+
+## sacemaSigned.pdf via remarkable
+sacemaSign.pdf: stash/contract.4.select.pdf address.txt.pdf Makefile
+	cat $< > /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "200 -615" \
+		-stdin -stdout | \
+	cat > $@
+	
+sacemaFiles += sacemaName.pdf stash/contract.2.select.pdf
+sacemaFiles += sacemaFill.pdf sacemaSigned.pdf
+sacema.cat.pdf: $(sacemaFiles)
+	$(pdfcat)
+
+######################################################################
+
+## This directory has its own cloud, and references the focal cloud as pcloud
+
+## select doesn't calculate the dependency, so this should not be commented
+pcloud/glasgowRequest.print.1-2.select.pdf: pcloud/glasgowRequest.pdf
+
+glasgowFiles = pcloud/glasgowRequest.print.1-2.select.pdf
+glasgowFiles += stash/uberGLA.1.receipt.pdf
+glasgowFiles += stash/uberKelvin.2.receipt.pdf
+glasgowFiles += stash/porGla.3.receipt.pdf
+glasgowFiles += stash/bnbGla.4.receipt.pdf
+glasgow.pdf: $(glasgowFiles)
+	$(pdfcat)
+
+######################################################################
+
 ## This breaks Downloads.*go – not order-dependent, deep makinessH
 ## Downloads/%: | Downloads ;
 
@@ -143,12 +191,19 @@ Sources += size.txt
 size.pdf: size.txt Makefile
 	pdfroff $< > $@
 
+Sources += address.txt
+
+address.txt.pdf: address.txt Makefile
+
 ######################################################################
 
 ## am.right.jpg: am.jpg
 
+rleft = convert -rotate 270 $< $@
+rright = convert -rotate 90 $< $@ 
+
 %.left.jpg: %.jpg
-	convert -rotate 270 $< $@
+	$(rleft)
 
 %.right.jpg: %.jpg
 	convert -rotate 90 $< $@ 
@@ -284,6 +339,7 @@ makestuff/%.stamp:
 -include makestuff/os.mk
 
 -include makestuff/forms.mk
+-include makestuff/receipts.mk
 -include makestuff/mirror.mk
 -include makestuff/texj.mk
 -include makestuff/pipeR.mk

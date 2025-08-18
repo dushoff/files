@@ -1,8 +1,11 @@
+## This file is _included_ from the Downloads actual Makefile
 all: update_copies
 runscreen: ;
 
 vim_session: 
 	bash -cl "vm ~/screens/org/files/Downloads.mk"
+
+## Avoid doing stuff here; that's what files is for
 
 ######################################################################
 
