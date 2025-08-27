@@ -31,6 +31,10 @@ mystery.png: stash/funny.png ; $(rleft)
 
 ######################################################################
 
+coates.dushoff.pdf: Downloads/Coates_masters_defense_BMB.pdf
+
+######################################################################
+
 ## Tech is fun, but you should do SACEMA on the remarkable (too many blanks)
 ## Or maybe keep p1 and p3 from here.
 
