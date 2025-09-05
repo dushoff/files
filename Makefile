@@ -18,6 +18,7 @@ test.md:
 ## lpr.pdf from elsewhere to here
 ## print.pdf stay in place
 
+## I guess this is the status for most of the work, but I do have a local cloud, and I'm thinking this would be a good place for Promotions as well
 ## Don't mirror anything from here; put things into directories mirrored from elsewhere …
 
 olympia.pdf: stash/pdaRequest.print.pdf stash/olympia.pdf
@@ -68,7 +69,7 @@ Downloads:
 	$(linkdir)
 
 ## Haven't quite kept this up, and not sure why it matters
-mirrors += cloud
+mirrors += cloud Promotions
 
 ######################################################################
 
