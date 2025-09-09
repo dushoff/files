@@ -227,7 +227,8 @@ brinReimburse.pdf: brinForm.signed.pdf pcloud/unitedBrin.pdf
 
 Ignore += name.txt
 
-key.sig.pdf: cloud/key.print.pdf formDrop/jsig.30.pdf 26313.echo.txt.pdf Makefile
+## cloud/key.pdf
+key.sig.pdf: cloud/key.print.pdf formDrop/jsig.30.pdf 26313.echo.txt.pdf
 	pdfjam $< 1 -o /dev/stdout | \
 	cpdf -stamp-on $(word 2, $^) -pos-left "148 118" \
 		-stdin -stdout | \
