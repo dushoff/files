@@ -1,4 +1,8 @@
 ## This is files, a _public_ repo for managing files
+## Redoing this 2025 Sep 18 (Thu)
+## Make it more of a service directory for ~/Downloads
+## Set up good mirrors; stash the Downloads actual Makefile here
+#### Does it need an include, or just all here??
 
 current: target
 -include target.mk
@@ -276,11 +280,11 @@ Stelmach_form.signed.pdf: Stelmach_form.print.pdf formDrop/jsig.30.pdf
 	pdfjam $< 1 /dev/stdin 1 $< 3-4 -o /dev/stdout | \
 	cat > $@
 
-## This is the old Downloads Makefile I guess
+## This is the old Dropbox Downloads Makefile I guess
 Sources += content.mk
 
 ## This is probably also the right place for the Makefile that lives in ~/Downloads; accumulate stuff first and them make some sort of link rule
-Sources += Downloads.mk
+Sources += Downloads.mk Downloads.md
 
 Sources += $(filter-out target.mk, $(wildcard *.mk))
 
