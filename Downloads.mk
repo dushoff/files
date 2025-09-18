@@ -3,32 +3,12 @@ all: update_copies
 runscreen: ;
 
 vim_session: 
-	bash -cl "vm ~/screens/org/files/Downloads.mk"
+	bash -cl "vm ~/screens/org/files/Downloads.mk ~/screens/org/files/Downloads.md"
 
-## Avoid doing stuff here; that's what files is for
+mirrors += jd picture transit attach
 
 ######################################################################
-
-folders += stash library cloud reviewDocs sent
-
-folders: $(folders)
-
-$(folders):
-	/bin/ln -s ~/screens/org/Planning/$@ .
-
-nuke: delall clean up
-
-delall:
-	$(RM) *.*
-
-clean:
-	$(RM) $(folders)
-
-put up:
-	cd ~/screens/org/Planning/ && $(MAKE) downup
-
-get down: 
-	cd ~/screens/org/Planning/ && $(MAKE) Downloads.get
+## Moving stuff around
 
 new:
 	mkdir -p $@
@@ -54,3 +34,29 @@ quote_names:
 filenames: ..filenames ;
 %.filenames:
 	rename "s/[()& ,?!-]+/_/g" $*/*.*
+
+## Resting
+
+folders += stash library cloud reviewDocs sent
+
+folders: $(folders)
+
+$(folders):
+	/bin/ln -s ~/screens/org/Planning/$@ .
+
+nuke: delall clean up
+
+delall:
+	$(RM) *.*
+
+clean:
+	$(RM) $(folders)
+
+put up:
+	cd ~/screens/org/Planning/ && $(MAKE) downup
+
+get down: 
+	cd ~/screens/org/Planning/ && $(MAKE) Downloads.get
+
+######################################################################
+
