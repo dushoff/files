@@ -15,6 +15,7 @@ new:
 	cp *.zip $@
 	cd $@ && bash -cl lastunzip && $(RM) *.zip
 
+## What is this for?? Should I delete and see if I re-invent it? 2025 Sep 27 (Sat)
 %.contents: contents
 	mv $< $*
 
