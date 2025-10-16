@@ -6,6 +6,8 @@ Now it is just an orphan directory
 
 Mostly we should come here to clean things up. We already have some things that are more permanent, and which should be mirrors
 
+OK, but which things need to be here? Probably just jd and attach?
+
 cp -r ~/Nextcloud/Downloads/picture .
 
 Specifically
@@ -13,3 +15,10 @@ Specifically
 * pictures/ for some pictures that wound up here;
 * transit/
 * attach/
+
+----------------------------------------------------------------------
+
+DEBT:
+
+Lots of stuff in ~/Dropbox is not tracked since the disaster; not sure where is or isn't a complete copy of the yushan stuff
+

@@ -1,5 +1,5 @@
 ## Downloads Makefile
-## This Downloads Makefile is a Dropbox file
+## This Downloads Makefile was a Dropbox file
 ## Not revision-controlled anymore 2024 Jul 09 (Tue)
 
 ######################################################################

@@ -1,9 +1,9 @@
-## This file is _included_ from the Downloads actual Makefile
+## This is the ~/Downloads Makefile; managed in org/files
 all: update_copies
 runscreen: ;
 
 vim_session: 
-	bash -cl "vm ~/screens/org/files/Downloads.mk ~/screens/org/files/Downloads.md"
+	bash -cl "vm ~/screens/org/files/Downloads.md"
 
 mirrors += jd picture transit attach
 
@@ -15,6 +15,7 @@ new:
 	cp *.zip $@
 	cd $@ && bash -cl lastunzip && $(RM) *.zip
 
+## What is this for?? Should I delete and see if I re-invent it? 2025 Sep 27 (Sat)
 %.contents: contents
 	mv $< $*
 
