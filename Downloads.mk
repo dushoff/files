@@ -51,12 +51,3 @@ delall:
 
 clean:
 	$(RM) $(folders)
-
-put up:
-	cd ~/screens/org/Planning/ && $(MAKE) downup
-
-get down: 
-	cd ~/screens/org/Planning/ && $(MAKE) Downloads.get
-
-######################################################################
-
