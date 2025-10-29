@@ -15,6 +15,7 @@ new:
 	cp *.zip $@
 	cd $@ && bash -cl lastunzip && $(RM) *.zip
 
+## What is this for?? Should I delete and see if I re-invent it? 2025 Sep 27 (Sat)
 %.contents: contents
 	mv $< $*
 
@@ -51,12 +52,3 @@ delall:
 
 clean:
 	$(RM) $(folders)
-
-put up:
-	cd ~/screens/org/Planning/ && $(MAKE) downup
-
-get down: 
-	cd ~/screens/org/Planning/ && $(MAKE) Downloads.get
-
-######################################################################
-
