@@ -1,10 +1,8 @@
-## Avoid doing stuff here; that's what files is for
-include ~/screens/org/files/Downloads.mk
 
-<<<<<<< HEAD
+default: update_copies
+
 ## There are things here that are intended as mirrors but not maintained since nextcloud collapse. Maybe make them as links to where. files?
 
-=======
 vim_session: 
 	bash -cl "vm ~/screens/org/files/Downloads.md"
 
@@ -55,4 +53,3 @@ delall:
 
 clean:
 	$(RM) $(folders)
->>>>>>> e024b8da1b55b7a0f8f804777719896e432eed97
