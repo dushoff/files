@@ -132,6 +132,15 @@ Downloads/SFUF300.pdf: cloud/SFUF300.pdf formDrop/jsig.30.pdf date_1.2.pdf
 		-stdin -stdout | \
 	cat > $@
 
+rwandaTransfer.pdf: stash/rwandaTransfer.print.pdf formDrop/jsig.30.pdf Makefile
+	pdfjam $< 2 -o /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "360 252" \
+		-stdin -stdout | \
+	cat > $@
+
+Downloads/rwandaTransfer.pdf: stash/rwandaTransfer.print.pdf rwandaTransfer.pdf
+	pdfjam $< 1 $(word 2, $^) 1 $< 3 -o $@
+
 jezreelTransfer.sig.pdf: stash/jezreelTransfer.print.pdf formDrop/jsig.30.pdf Makefile
 	pdfjam $< 2 -o /dev/stdout | \
 	cpdf -stamp-on $(word 2, $^) -pos-left "270 190" \

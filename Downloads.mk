@@ -3,6 +3,10 @@
 all: update_copies
 runscreen: ;
 
+default: update_copies
+
+## There are things here that are intended as mirrors but not maintained since nextcloud collapse. Maybe make them as links to where. files?
+
 vim_session: 
 	bash -cl "vm ~/screens/org/files/Downloads.md"
 
