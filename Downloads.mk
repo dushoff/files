@@ -1,4 +1,9 @@
-## This is the ~/Downloads Makefile; it is a file in files/ and you are supposed to link it into Downloads
+## This is the ~/Downloads make file; managed in org/files
+## Actual Makefile should just include this file – or link, I guess
+all: update_copies
+runscreen: ;
+
+default: update_copies
 
 ## There are things here that are intended as mirrors but not maintained since nextcloud collapse. Maybe make them as links to where. files?
 
