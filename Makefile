@@ -85,7 +85,7 @@ pcloud: dir=~/screens/org/Planning/cloud
 pcloud:
 	$(linkdirname)
 
-stash/%: | stash ;
+## stash/%: | stash ;
 Ignore += stash
 stash: dir=~/screens/org/Planning/stash
 stash:
@@ -198,6 +198,11 @@ address.txt.pdf: address.txt Makefile
 
 rleft = convert -rotate 270 $< $@
 rright = convert -rotate 90 $< $@ 
+
+stash/trieste.right.pdf: stash/trieste.pdf
+	$(rright)
+stash/triesteKey.right.pdf: stash/triesteKey.pdf
+	$(rright)
 
 %.left.jpg: %.jpg
 	$(rleft)
