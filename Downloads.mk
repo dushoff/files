@@ -7,6 +7,10 @@ default: update_copies
 
 ## There are things here that are intended as mirrors but not maintained since nextcloud collapse. Maybe make them as links to where. files?
 
+## Maybe maintained now. I seem some mirrors, but not a lot of explanation
+
+default: update_copies
+
 vim_session: 
 	bash -cl "vm ~/screens/org/files/Downloads.md"
 
