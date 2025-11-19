@@ -72,8 +72,7 @@ nodown:
 	cd ~/Downloads && ln -s $(CURDIR)/Downloads.mk Makefile
 
 ## Haven't quite kept this up, and not sure why it matters
-## What was Promotions? Why is not mirroring? 2025 Sep 21 (Sun)
-mirrors += cloud Promotions Downloads
+mirrors += cloud 
 
 ######################################################################
 
