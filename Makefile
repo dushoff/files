@@ -71,7 +71,7 @@ nodown:
 	$(RM) ~/Downloads && mkdir ~/Downloads
 	cd ~/Downloads && ln -s $(CURDIR)/Downloads.mk Makefile
 
-## Haven't quite kept this up, and not sure why it matters
+Ignore += Downloads
 mirrors += cloud 
 
 ######################################################################
