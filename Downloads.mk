@@ -1,4 +1,3 @@
-## Avoid doing stuff here; that's what files is for
 ## This is the ~/Downloads make file; managed in org/files
 ## Actual Makefile should just include this file – or link, I guess
 all: update_copies
@@ -62,5 +61,3 @@ delall:
 
 clean:
 	$(RM) $(folders)
-
-include ~/screens/org/files/Downloads.mk

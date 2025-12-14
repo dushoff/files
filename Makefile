@@ -66,9 +66,8 @@ glasgow.pdf: $(glasgowFiles)
 ## This breaks Downloads.*go – not order-dependent, deep makinessH
 ## Downloads/%: | Downloads ;
 
-## Destroy Downloads link
-nodown:
-	$(RM) ~/Downloads && mkdir ~/Downloads
+downlink:
+	$(RM) ~/Downloads/Makefile
 	cd ~/Downloads && ln -s $(CURDIR)/Downloads.mk Makefile
 
 Ignore += Downloads
