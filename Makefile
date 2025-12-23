@@ -66,9 +66,12 @@ glasgow.pdf: $(glasgowFiles)
 ## This breaks Downloads.*go – not order-dependent, deep makinessH
 ## Downloads/%: | Downloads ;
 
-downlink:
-	$(RM) ~/Downloads/Makefile
+downlink: ~/Downloads
+	-$(RM) ~/Downloads/Makefile
 	cd ~/Downloads && ln -s $(CURDIR)/Downloads.mk Makefile
+
+~/Downloads:
+	$(mkdir)
 
 Ignore += Downloads
 mirrors += cloud 
