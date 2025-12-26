@@ -1,8 +1,6 @@
 ## This is files, a _public_ repo for managing files
 ## Redoing this 2025 Sep 18 (Thu)
 ## Make it more of a service directory for ~/Downloads
-## Set up good mirrors; stash the Downloads actual Makefile here
-#### Does it need an include, or just all here??
 
 current: target
 -include target.mk
