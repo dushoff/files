@@ -2,6 +2,8 @@
 ## symlink is set up in files
 
 ## Downloads is not a repo, so stable subdirectories should also be managed by files -- unless we can over-ride all.time and add this to alldirs? Which seems kind of brilliant.
+## It is kind of mystery how things are working now, though 2025 Dec 26 (Fri):
+## This is in alldirs, but doesn't seem to all, nor to kick an error on sink
 
 all: update_copies
 runscreen: ;
