@@ -1,5 +1,8 @@
-## This is the ~/Downloads make file; managed in org/files
-## Actual Makefile should just include this file – or link, I guess
+## This is the ~/Downloads Makefile; managed in org/files
+## symlink is set up in files
+
+## Downloads is not a repo, so stable subdirectories should also be managed by files -- unless we can over-ride all.time and add this to alldirs? Which seems kind of brilliant.
+
 all: update_copies
 runscreen: ;
 
