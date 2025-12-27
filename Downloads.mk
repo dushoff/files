@@ -41,6 +41,16 @@ contents:
 
 ######################################################################
 
+newdoc.pdf: | cache
+	ls -t *.docx *.DOCX | head -1 | xargs -i libreoffice --headless --convert-to pdf "{}"
+	ls -t *.pdf *.PDF | head -1 | xargs -i mv "{}" $@
+	ls -t *.docx *.DOCX | head -1 | xargs -i mv "{}" cache/
+
+cache:
+	$(mkdir) 
+
+######################################################################
+
 update_copies: .
 	rename -f "s/ *\([0-9]\)//" *\([0-9]\).*
 	touch $@
