@@ -1,4 +1,4 @@
-## This is the ~/Downloads make file; managed in org/files
+#m# This is the ~/Downloads make file; managed in org/files
 ## Actual Makefile should just include this file – or link, I guess
 all: update_copies
 runscreen: ;
@@ -7,14 +7,13 @@ default: update_copies
 
 ## There are things here that are intended as mirrors but not maintained since nextcloud collapse. Maybe make them as links to where. files?
 
-## Maybe maintained now. I seem some mirrors, but not a lot of explanation
+## Maybe maintained now. I see some mirrors, but not a lot of explanation
 
 default: update_copies
 
 vim_session: 
 	bash -cl "vm ~/screens/org/files/Downloads.md"
 
-mirrors += jd picture transit attach
 
 ######################################################################
 ## Moving stuff around
@@ -45,9 +44,9 @@ filenames: ..filenames ;
 %.filenames:
 	rename "s/[()& ,?!-]+/_/g" $*/*.*
 
-## Resting
+######################################################################
 
-folders += stash library cloud reviewDocs sent
+## folders += stash library cloud reviewDocs sent
 
 folders: $(folders)
 
