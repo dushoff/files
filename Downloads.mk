@@ -1,5 +1,12 @@
-#m# This is the ~/Downloads make file; managed in org/files
-## Actual Makefile should just include this file – or link, I guess
+## This is the ~/Downloads Makefile; managed in org/files
+## symlink is set up in files
+
+## Downloads is not a repo, so stable subdirectories should also be managed by files -- unless we can over-ride all.time and add this to alldirs? Which seems kind of brilliant.
+## It is kind of mystery how things are working now, though 2025 Dec 26 (Fri):
+## This is in alldirs, but doesn't seem to all, nor to kick an error on sink
+
+## This directory does not use makestuff right now 2025 Dec 26 (Fri)
+
 all: update_copies
 runscreen: ;
 
@@ -30,6 +37,16 @@ new:
 contents: 
 	mkdir $@
 	mv *.* $@
+
+######################################################################
+
+newdoc.pdf: | cache
+	ls -t *.docx *.DOCX | head -1 | xargs -i libreoffice --headless --convert-to pdf "{}"
+	ls -t *.pdf *.PDF | head -1 | xargs -i mv "{}" $@
+	ls -t *.docx *.DOCX | head -1 | xargs -i mv "{}" cache/
+
+cache:
+	$(mkdir) 
 
 ######################################################################
 

@@ -2,7 +2,6 @@
 ## Redoing this 2025 Sep 18 (Thu)
 # Make it more of a service directory for ~/Downloads
 ## Set up good mirrors; stash the Downloads actual Makefile here
-#### Does it need an include, or just all here??
 
 current: target
 -include target.mk
@@ -69,9 +68,12 @@ glasgow.pdf: $(glasgowFiles)
 ## This breaks Downloads.*go – not order-dependent, deep makinessH
 ## Downloads/%: | Downloads ;
 
-downlink:
+downlink: | ~/Downloads
 	-$(RM) ~/Downloads/Makefile
 	cd ~/Downloads && ln -s $(CURDIR)/Downloads.mk Makefile
+
+~/Downloads:
+	$(mkdir)
 
 Ignore += Downloads
 mirrors += cloud 
