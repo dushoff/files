@@ -64,11 +64,12 @@ filenames: ..filenames ;
 ######################################################################
 
 ## folders += stash library cloud reviewDocs sent
+folders += jd picture transit attach
 
 folders: $(folders)
 
 $(folders):
-	/bin/ln -s ~/screens/org/Planning/$@ .
+	/bin/ln -s ~/screens/org/files/$@ .
 
 nuke: delall clean up
 
