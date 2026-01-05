@@ -1,5 +1,5 @@
 ## This is the ~/Downloads make file; managed in org/files
-## Actual Makefile should just include this file – or link, I guess
+## and served to ~/Downloads as a link
 all: update_copies
 runscreen: ;
 
