@@ -1,8 +1,7 @@
 ## This is files, a _public_ repo for managing files
 ## Redoing this 2025 Sep 18 (Thu)
-## Make it more of a service directory for ~/Downloads
+# Make it more of a service directory for ~/Downloads
 ## Set up good mirrors; stash the Downloads actual Makefile here
-#### Does it need an include, or just all here??
 
 current: target
 -include target.mk
@@ -22,8 +21,11 @@ test.md:
 ## lpr.pdf from elsewhere to here
 ## print.pdf stay in place
 
-## I guess this is the status for most of the work, but I do have a local cloud, and I'm thinking this would be a good place for Promotions as well
-## Don't mirror anything from here; put things into directories mirrored from elsewhere …
+## 2026 Jan 04 (Sun) mirroring Downloads from here, and using mirrors from 
+## planning as well? Switch to just the former?
+
+## These are service mirrors for Downloads and controlled from there
+mirrors += jd picture transit attach
 
 olympia.pdf: stash/pdaRequest.print.pdf stash/olympia.pdf
 	pdfjam -o $@ $< 1 $(word 2, $^)
@@ -66,7 +68,7 @@ glasgow.pdf: $(glasgowFiles)
 ## This breaks Downloads.*go – not order-dependent, deep makinessH
 ## Downloads/%: | Downloads ;
 
-downlink: ~/Downloads
+downlink: | ~/Downloads
 	-$(RM) ~/Downloads/Makefile
 	cd ~/Downloads && ln -s $(CURDIR)/Downloads.mk Makefile
 
@@ -345,6 +347,7 @@ makestuff/%.stamp:
 -include makestuff/forms.mk
 -include makestuff/receipts.mk
 -include makestuff/mirror.mk
+mirror = cloudmirror:screens/org/files
 -include makestuff/texj.mk
 -include makestuff/pipeR.mk
 

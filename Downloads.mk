@@ -1,5 +1,17 @@
+<<<<<<< HEAD
 ## This is the ~/Downloads make file; managed in org/files
 ## and served to ~/Downloads as a link
+=======
+## This is the ~/Downloads Makefile; managed in org/files
+## symlink is set up in files
+
+## Downloads is not a repo, so stable subdirectories should also be managed by files -- unless we can over-ride all.time and add this to alldirs? Which seems kind of brilliant.
+## It is kind of mystery how things are working now, though 2025 Dec 26 (Fri):
+## This is in alldirs, but doesn't seem to all, nor to kick an error on sink
+
+## This directory does not use makestuff right now 2025 Dec 26 (Fri)
+
+>>>>>>> e44be785099c22c7a2a68dcd9a3e4060a24698ff
 all: update_copies
 runscreen: ;
 
@@ -7,14 +19,13 @@ default: update_copies
 
 ## There are things here that are intended as mirrors but not maintained since nextcloud collapse. Maybe make them as links to where. files?
 
-## Maybe maintained now. I seem some mirrors, but not a lot of explanation
+## Maybe maintained now. I see some mirrors, but not a lot of explanation
 
 default: update_copies
 
 vim_session: 
 	bash -cl "vm ~/screens/org/files/Downloads.md"
 
-mirrors += jd picture transit attach
 
 ######################################################################
 ## Moving stuff around
@@ -34,6 +45,16 @@ contents:
 
 ######################################################################
 
+newdoc.pdf: | cache
+	ls -t *.docx *.DOCX | head -1 | xargs -i libreoffice --headless --convert-to pdf "{}"
+	ls -t *.pdf *.PDF | head -1 | xargs -i mv "{}" $@
+	ls -t *.docx *.DOCX | head -1 | xargs -i mv "{}" cache/
+
+cache:
+	$(mkdir) 
+
+######################################################################
+
 update_copies: .
 	rename -f "s/ *\([0-9]\)//" *\([0-9]\).*
 	touch $@
@@ -45,14 +66,15 @@ filenames: ..filenames ;
 %.filenames:
 	rename "s/[()& ,?!-]+/_/g" $*/*.*
 
-## Resting
+######################################################################
 
-folders += stash library cloud reviewDocs sent
+## folders += stash library cloud reviewDocs sent
+folders += jd picture transit attach
 
 folders: $(folders)
 
 $(folders):
-	/bin/ln -s ~/screens/org/Planning/$@ .
+	/bin/ln -s ~/screens/org/files/$@ .
 
 nuke: delall clean up
 

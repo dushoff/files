@@ -1,3 +1,6 @@
+
+## History
+
 Downloads was a Dropbox for a long time
 
 Then it was a mirror inside of Nextcloud
@@ -20,5 +23,5 @@ Specifically
 
 DEBT:
 
-Lots of stuff in ~/Dropbox is not tracked since the disaster; not sure where is or isn't a complete copy of the yushan stuff
+Lots of stuff in ~/Dropbox is not tracked since the disaster. Complete copy of yushan stuff in 332. Figure out what needs to be preserved.
 
