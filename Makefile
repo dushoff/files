@@ -104,6 +104,18 @@ Ignore += *.pdf *.png *.jpg
 
 hiring.lpr.pdf: Downloads/hiring.pdf
 
+oviyaConflict.lpr.pdf: Downloads/oviyaConflict.pdf
+
+oviyaSig.pdf: oviyaConflict.lpr.pdf formDrop/jsig.25.pdf date_1.0.pdf name_1.0.pdf
+	pdfjam $< -o /dev/stdout | \
+	cpdf -stamp-on $(word 2, $^) -pos-left "380 200" \
+		-stdin -stdout | \
+	cpdf -stamp-on $(word 3, $^) -pos-left "380 -555" \
+		-stdin -stdout | \
+	cpdf -stamp-on $(word 4, $^) -pos-left "380 -540" \
+		-stdin -stdout | \
+	cat > $@
+
 ######################################################################
 
 ## Compile reimbursement requests
