@@ -1,8 +1,7 @@
-## This is the ~/Downloads Makefile; managed in org/files
-## symlink is set up in files
+## This is the ~/Downloads make file; managed in org/files
+## and served to ~/Downloads as a link
 
-## Downloads is not a repo, so stable subdirectories should also be managed by files -- unless we can over-ride all.time and add this to alldirs? Which seems kind of brilliant.
-## It is kind of mystery how things are working now, though 2025 Dec 26 (Fri):
+## Downloads is not a repo, so stable subdirectories should also be managed by files -- unless we can over-ride all.time and add this to alldirs? Which seems kind of brilliant. Dropped this because I don't understand how Downloads is interacting with all right now 2025 Dec 26 (Fri):
 ## This is in alldirs, but doesn't seem to all, nor to kick an error on sink
 
 ## This directory does not use makestuff right now 2025 Dec 26 (Fri)
@@ -20,7 +19,6 @@ default: update_copies
 
 vim_session: 
 	bash -cl "vm ~/screens/org/files/Downloads.md"
-
 
 ######################################################################
 ## Moving stuff around
