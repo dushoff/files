@@ -359,7 +359,6 @@ makestuff/%.stamp:
 -include makestuff/forms.mk
 -include makestuff/receipts.mk
 -include makestuff/mirror.mk
-mirror = cloudmirror:screens/org/files
 -include makestuff/texj.mk
 -include makestuff/pipeR.mk
 

@@ -17,8 +17,7 @@ default: update_copies
 
 default: update_copies
 
-vim_session: 
-	bash -cl "vm ~/screens/org/files/Downloads.md"
+ffolder = ~/screens/org/files/
 
 ######################################################################
 ## Moving stuff around
@@ -69,7 +68,19 @@ folders: $(folders)
 $(folders):
 	/bin/ln -s ~/screens/org/files/$@ .
 
-nuke: delall clean up
+%.get %.syncup:
+	cd $(ffolder) && $(MAKE) $@
+get = $(folders:%=%.get)
+pullup: $(get)
+
+syncup = $(folders:%=%.syncup)
+sync: $(syncup)
+
+######################################################################
+
+## Less needed than before
+
+nuke: delall clean syncup
 
 delall:
 	$(RM) *.*
