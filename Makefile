@@ -213,11 +213,15 @@ address.txt.pdf: address.txt Makefile
 
 rleft = convert -rotate 270 $< $@
 rright = convert -rotate 90 $< $@ 
+rup = convert -rotate 180 $< $@ 
 
 stash/trieste.right.pdf: stash/trieste.pdf
 	$(rright)
 stash/triesteKey.right.pdf: stash/triesteKey.pdf
 	$(rright)
+
+stash/prop1.jpg: Downloads/prop1.jpg
+	$(rup)
 
 %.left.jpg: %.jpg
 	$(rleft)
