@@ -78,6 +78,22 @@ sync: $(syncup)
 
 ######################################################################
 
+## Is it becoming stupid not to have makestuff here?
+
+%.pptx.pdf: %.pptx
+	mkdir $*.dir 
+	soffice --headless --convert-to pdf --outdir $*.dir $<
+	mv $*.dir/*.pdf $@
+	rm -fr $*.dir
+
+pptxf = $(wildcard *.pptx)
+pptxp = $(pptxf:%=%.pdf)
+
+conversions:
+	@echo $(pptxp)
+
+######################################################################
+
 ## Less needed than before
 
 nuke: delall clean syncup
