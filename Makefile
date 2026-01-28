@@ -345,6 +345,23 @@ fake: ;
 
 ######################################################################
 
+## Why do things here vs Downloads? Try to get your head straight
+
+## rd.unlocked.pdf: rd.pdf
+%.unlocked.pdf: %.pdf
+	gs \
+	-dNOPAUSE -dBATCH -dSAFER \
+	-sDEVICE=pdfwrite \
+	-dPDFSETTINGS=/printer \
+	-dCompatibilityLevel=1.4 \
+	-o $@ \
+	-dFILTERVECTOR \
+	-dFILTERTEXT \
+	$<
+
+
+######################################################################
+
 ### Makestuff
 
 Sources += Makefile
