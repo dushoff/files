@@ -9,6 +9,10 @@
 all: update_copies
 runscreen: ;
 
+-include target.mk
+target.mk:
+	/bin/cp ~/screens/$@ .
+
 default: update_copies
 
 ## There are things here that are intended as mirrors but not maintained since nextcloud collapse. Maybe make them as links to where. files?
@@ -86,11 +90,11 @@ sync: $(syncup)
 	mv $*.dir/*.pdf $@
 	rm -fr $*.dir
 
-pptxf = $(wildcard *.pptx)
+pptxf = $(wildcard *.pdf)
 pptxp = $(pptxf:%=%.pdf)
 
 conversions:
-	@echo $(pptxp)
+	@echo $(pptxf)
 
 ######################################################################
 
