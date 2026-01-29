@@ -359,6 +359,13 @@ fake: ;
 	-dFILTERTEXT \
 	$<
 
+## rd.cleaned.pdf: rd.pdf
+%.cleaned.pdf: %.pdf
+	gs -sDEVICE=pdfwrite -o $@ -dPDFSETTINGS=/prepress $<
+
+## rd.unlocked.pdf.png:
+%.pdf.png: %.pdf
+	pdftoppm $< page -png
 
 ######################################################################
 
