@@ -83,6 +83,7 @@ sync: $(syncup)
 ######################################################################
 
 ## Is it becoming stupid not to have makestuff here?
+## Should I move all of this stuff to files?
 
 %.pptx.pdf: %.pptx
 	mkdir $*.dir 
