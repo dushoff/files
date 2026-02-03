@@ -3,12 +3,16 @@
 # Make it more of a service directory for ~/Downloads
 ## Set up good mirrors; stash the Downloads actual Makefile here
 
+pyvenv: ; $(systempyvenv)
+
 current: target
 -include target.mk
 Ignore = target.mk
 ## Figure out how to filter this out from wildcard below
 
 -include makestuff/perl.def
+-include makestuff/pyvenv.mk
+-include makestuff/python.def
 
 vim_session:
 	bash -cl "vmt"
@@ -126,6 +130,25 @@ Downloads/pdaRequest.pdf: pdaRequest.print.pdf stash/pdaNarrative.pdf stash/ente
 	$(pdfcat)
 
 ## Downloads/memEligible.print.pdf:
+
+######################################################################
+
+## Messing with pptx
+
+pptxq.py: | python-pptx.pip
+
+Ignore += *.qmd.log
+
+## Downloads/effects.qmd: Downloads/effects.pptx
+Downloads/%.qmd: %.qmd.log ;
+Downloads/%.qmd: %.qmd.log ;
+%.qmd.log: Downloads/%.pptx pptxq.py
+	$(PITH)
+
+
+## pptx2md Downloads/new.pptx ##
+## mv out.md new.md ##
+
 
 ######################################################################
 

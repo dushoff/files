@@ -5,6 +5,7 @@
 ## This is in alldirs, but doesn't seem to all, nor to kick an error on sink
 
 ## This directory does not use makestuff right now 2025 Dec 26 (Fri)
+## Should I just move all these rules out to files/? Isn't that what it's for?
 
 all: update_copies
 runscreen: ;
@@ -83,7 +84,7 @@ sync: $(syncup)
 ######################################################################
 
 ## Is it becoming stupid not to have makestuff here?
-## Should I move all of this stuff to files?
+## Or should I move all of this stuff to files?
 
 %.pptx.pdf: %.pptx
 	mkdir $*.dir 
@@ -96,6 +97,23 @@ pptxp = $(pptxf:%=%.pdf)
 
 conversions:
 	@echo $(pptxf)
+
+######################################################################
+
+## Sandboxing
+
+## Does not work at all despite copilot
+effects.md: effects.pptx
+	pandoc $< -t markdown -o $@
+
+## effects.pptx.html: effects.pptx
+## Tremendously horrible
+%.pptx.html: %.pptx
+	soffice --headless --convert-to html "$<" --outdir .
+	sleep 1
+	/bin/mv $*.html $@
+
+## python pptxq.py effects.pptx -o effects.qmd ##
 
 ######################################################################
 
