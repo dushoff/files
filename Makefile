@@ -146,6 +146,7 @@ Downloads/%.qmd: %.qmd.log ;
 	$(PITH)
 
 
+Ignore += img/ *.html
 ## pptx2md Downloads/new.pptx ##
 ## mv out.md new.md ##
 
