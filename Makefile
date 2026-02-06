@@ -145,11 +145,9 @@ Downloads/%.qmd: %.qmd.log ;
 %.qmd.log: Downloads/%.pptx pptxq.py
 	$(PITH)
 
-
 Ignore += img/ *.html
 ## pptx2md Downloads/new.pptx ##
 ## mv out.md new.md ##
-
 
 ######################################################################
 
