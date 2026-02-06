@@ -8,13 +8,8 @@
 ## Should I just move all these rules out to files/? Isn't that what it's for?
 
 all: update_copies
-runscreen: ;
-
--include target.mk
-target.mk:
-	/bin/cp ~/screens/$@ .
-
 default: update_copies
+runscreen: ;
 
 ## There are things here that are intended as mirrors but not maintained since nextcloud collapse. Maybe make them as links to where. files?
 
@@ -92,11 +87,15 @@ sync: $(syncup)
 	mv $*.dir/*.pdf $@
 	rm -fr $*.dir
 
-pptxf = $(wildcard *.pdf)
+pptxf = $(wildcard *.pptx)
 pptxp = $(pptxf:%=%.pdf)
 
-conversions:
-	@echo $(pptxf)
+trash:
+	mkdir $@
+
+conversions: | trash
+	$(MAKE) $(pptxp)
+	/bin/mv $(pptxf) trash
 
 ######################################################################
 
