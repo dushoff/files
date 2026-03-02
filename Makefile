@@ -282,6 +282,9 @@ brinForm.signed.pdf: pcloud/brinForm.pdf.pdf formDrop/jsig.30.pdf
 brinReimburse.pdf: brinForm.signed.pdf pcloud/unitedBrin.pdf 
 	$(pdfdog)
 
+Downloads/spc.pdf: Downloads/proposal.pdf Downloads/previewBudgetModule.pdf
+	$(pdfdog)
+
 ######################################################################
 
 Ignore += name.txt
