@@ -106,6 +106,8 @@ Ignore += *.pdf *.png *.jpg
 
 ## Current
 
+oglaza.lpr.pdf: Downloads/oglaza.pdf
+
 hiring.lpr.pdf: Downloads/hiring.pdf
 
 oviyaConflict.lpr.pdf: Downloads/oviyaConflict.pdf
