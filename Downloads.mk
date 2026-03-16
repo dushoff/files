@@ -118,7 +118,7 @@ effects.md: effects.pptx
 
 ## Less needed than before
 
-nuke: delall clean syncup
+nuke: delall clean
 
 delall:
 	$(RM) *.*
