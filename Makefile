@@ -106,6 +106,8 @@ Ignore += *.pdf *.png *.jpg
 
 ## Current
 
+oglaza.lpr.pdf: Downloads/oglaza.pdf
+
 hiring.lpr.pdf: Downloads/hiring.pdf
 
 oviyaConflict.lpr.pdf: Downloads/oviyaConflict.pdf
@@ -280,6 +282,9 @@ brinForm.signed.pdf: pcloud/brinForm.pdf.pdf formDrop/jsig.30.pdf
 	cat > $@
 
 brinReimburse.pdf: brinForm.signed.pdf pcloud/unitedBrin.pdf 
+	$(pdfdog)
+
+Downloads/spc.pdf: Downloads/proposal.pdf Downloads/previewBudgetModule.pdf
 	$(pdfdog)
 
 ######################################################################
