@@ -35,6 +35,9 @@ contents:
 	mkdir $@
 	mv *.* $@
 
+dushoffShiLevin.mp4: dushoffShiLevinMTD.mov Makefile
+	ffmpeg -y -i $< -ss 0.4 -acodec copy $@
+
 ######################################################################
 
 newdoc.pdf: | cache
