@@ -56,6 +56,16 @@ coates.dushoff.pdf: stash/coates.print.pdf formDrop/jsig.30.pdf Makefile
 
 ## This directory has its own cloud, and references the focal cloud as pcloud
 
+pcloud/sevillaFiles.print.1-2.select.pdf: pcloud/sevillaFiles.pdf
+
+sevillaFiles += pcloud/sevillaRequest.print.1-2.select.pdf ##
+sevillaFiles += stash/sevillaReg.1.receipt.pdf
+sevillaFiles += stash/sevillaFlights.2.receipt.pdf
+sevillaFiles += stash/sevillaRoom.3.receipt.pdf
+
+sevilla.pdf: $(sevillaFiles)
+	$(pdfcat)
+
 ## select doesn't calculate the dependency, so this should not be commented
 pcloud/glasgowRequest.print.1-2.select.pdf: pcloud/glasgowRequest.pdf
 
