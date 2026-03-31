@@ -35,6 +35,9 @@ contents:
 	mkdir $@
 	mv *.* $@
 
+dushoffShiLevin.mp4: dushoffShiLevinMTD.mov Makefile
+	ffmpeg -y -i $< -ss 0.4 -acodec copy $@
+
 ######################################################################
 
 newdoc.pdf: | cache
@@ -118,7 +121,7 @@ effects.md: effects.pptx
 
 ## Less needed than before
 
-nuke: delall clean syncup
+nuke: delall clean
 
 delall:
 	$(RM) *.*
