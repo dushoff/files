@@ -160,7 +160,7 @@ Downloads/%.qmd: %.qmd.log ;
 	$(PITH)
 
 Ignore += img/ *.html
-## pptx2md Downloads/new.pptx ##
+## pptx2md Downloads/survey.pptx ##
 ## mv out.md new.md ##
 
 ######################################################################
