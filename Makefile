@@ -52,9 +52,21 @@ coates.dushoff.pdf: stash/coates.print.pdf formDrop/jsig.30.pdf Makefile
 
 ## sacema.mk
 
+## yt-dlp -o "lecture.mp4" --cookies-from-browser chrome "https://content.echo360.ca/0000.9883f6b4-b34c-4eba-a570-eefe2225808b/31c4acdc-9695-4bb4-96d8-94de56504f95/1/s0_a.m3u8" ##
+
 ######################################################################
 
 ## This directory has its own cloud, and references the focal cloud as pcloud
+
+pcloud/sevillaFiles.print.1-2.select.pdf: pcloud/sevillaFiles.pdf
+
+sevillaFiles += pcloud/sevillaRequest.print.1-2.select.pdf ##
+sevillaFiles += stash/sevillaReg.1.receipt.pdf
+sevillaFiles += stash/sevillaFlights.2.receipt.pdf
+sevillaFiles += stash/sevillaRoom.3.receipt.pdf
+
+sevilla.pdf: $(sevillaFiles)
+	$(pdfcat)
 
 ## select doesn't calculate the dependency, so this should not be commented
 pcloud/glasgowRequest.print.1-2.select.pdf: pcloud/glasgowRequest.pdf
@@ -148,7 +160,7 @@ Downloads/%.qmd: %.qmd.log ;
 	$(PITH)
 
 Ignore += img/ *.html
-## pptx2md Downloads/new.pptx ##
+## pptx2md Downloads/survey.pptx ##
 ## mv out.md new.md ##
 
 ######################################################################
