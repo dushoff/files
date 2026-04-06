@@ -15,7 +15,7 @@ Ignore = target.mk
 -include makestuff/python.def
 
 vim_session:
-	bash -cl "vmt"
+	bash -ic "vmt"
 
 test.md:
 	pandoc -o $@ Downloads/*.docx
@@ -338,6 +338,7 @@ UMD_wire.pdf: cloud/UMD_wire.print.pdf formDrop/jsig.30.pdf date_1.2.pdf name_1.
 		-stdin -stdout | \
 	cat > $@
 
+## Todd Parsons' version of the phenHet formula
 Ignore += *.out
 Ignore += GammaPowerLaw.bib
 GammaPowerLaw.pdf: cloud/GammaPowerLaw.tex
@@ -369,6 +370,21 @@ Downloads/Makefile: fake
 	cd $(dir $@) && ln -fs $(CURDIR)/Downloads.mk $(notdir $@)
 fake: ;
 
+######################################################################
+
+Sources += $(wildcard *.sh)
+Ignore += *.X
+%.X: %
+	chmod a+x $<
+	touch $@
+
+nonoose.png: Downloads/noose.webp NO.sh.X
+	./NO.sh $< $@
+	file $@
+
+######################################################################
+
+## Printing
 ## If we want to take stuff directly from pcloud (or maybe stash?)
 ## To use a local file, use .print instead (from forms.mk)
 %.lpr.pdf: pcloud/%.pdf | ~/PDF
