@@ -52,6 +52,8 @@ coates.dushoff.pdf: stash/coates.print.pdf formDrop/jsig.30.pdf Makefile
 
 ## sacema.mk
 
+## yt-dlp -o "lecture.mp4" --cookies-from-browser chrome "https://content.echo360.ca/0000.9883f6b4-b34c-4eba-a570-eefe2225808b/31c4acdc-9695-4bb4-96d8-94de56504f95/1/s0_a.m3u8" ##
+
 ######################################################################
 
 ## This directory has its own cloud, and references the focal cloud as pcloud
@@ -158,7 +160,7 @@ Downloads/%.qmd: %.qmd.log ;
 	$(PITH)
 
 Ignore += img/ *.html
-## pptx2md Downloads/new.pptx ##
+## pptx2md Downloads/survey.pptx ##
 ## mv out.md new.md ##
 
 ######################################################################
@@ -335,6 +337,7 @@ UMD_wire.pdf: cloud/UMD_wire.print.pdf formDrop/jsig.30.pdf date_1.2.pdf name_1.
 		-stdin -stdout | \
 	cat > $@
 
+## Todd Parsons' version of the phenHet formula
 Ignore += *.out
 Ignore += GammaPowerLaw.bib
 GammaPowerLaw.pdf: cloud/GammaPowerLaw.tex
@@ -366,6 +369,21 @@ Downloads/Makefile: fake
 	cd $(dir $@) && ln -fs $(CURDIR)/Downloads.mk $(notdir $@)
 fake: ;
 
+######################################################################
+
+Sources += $(wildcard *.sh)
+Ignore += *.X
+%.X: %
+	chmod a+x $<
+	touch $@
+
+nonoose.png: Downloads/noose.webp NO.sh.X
+	./NO.sh $< $@
+	file $@
+
+######################################################################
+
+## Printing
 ## If we want to take stuff directly from pcloud (or maybe stash?)
 ## To use a local file, use .print instead (from forms.mk)
 %.lpr.pdf: pcloud/%.pdf | ~/PDF
