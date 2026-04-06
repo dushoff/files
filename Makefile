@@ -162,6 +162,7 @@ Downloads/%.qmd: %.qmd.log ;
 Ignore += img/ *.html
 ## pptx2md Downloads/survey.pptx ##
 ## mv out.md new.md ##
+## del out.md ##
 
 ######################################################################
 
