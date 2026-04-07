@@ -15,7 +15,7 @@ Ignore = target.mk
 -include makestuff/python.def
 
 vim_session:
-	bash -ic "vmt"
+	bash -ic "vmt Downloads.mk"
 
 test.md:
 	pandoc -o $@ Downloads/*.docx
