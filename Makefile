@@ -260,6 +260,9 @@ stash/triesteKey.right.pdf: stash/triesteKey.pdf
 stash/prop1.jpg: Downloads/prop1.jpg
 	$(rup)
 
+Downloads/babyFam.right.jpg: stash/babyFam.jpg
+	$(rright)
+
 %.left.jpg: %.jpg
 	$(rleft)
 
