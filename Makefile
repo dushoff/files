@@ -50,6 +50,11 @@ coates.dushoff.pdf: stash/coates.print.pdf formDrop/jsig.30.pdf Makefile
 
 ######################################################################
 
+Downloads/all.pdf: $(wildcard Downloads/*.pdf)
+	pdfjam -o $@ $^
+
+######################################################################
+
 ## sacema.mk
 
 ## yt-dlp -o "lecture.mp4" --cookies-from-browser chrome "https://content.echo360.ca/0000.9883f6b4-b34c-4eba-a570-eefe2225808b/31c4acdc-9695-4bb4-96d8-94de56504f95/1/s0_a.m3u8" ##
