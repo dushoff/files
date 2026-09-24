@@ -25,7 +25,7 @@ ffolder = ~/screens/org/files/
 new:
 	mkdir -p $@
 	cp *.zip $@
-	cd $@ && bash -cl lastunzip && $(RM) *.zip
+	cd $@ && bash -ci lastunzip && $(RM) *.zip
 
 ## What is this for?? Should I delete and see if I re-invent it? 2025 Sep 27 (Sat)
 %.contents: contents
